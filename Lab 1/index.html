@@ -8,6 +8,13 @@
   </head>
   <body>
     <div id="map"></div>
+    <div id="controlWrapper">
+      <div id="zoomInButton" draggable="true">+</div>
+      <div id="zoomOutButton">-</div>
+      <button id="currentLocation" onclick="getLocation();"></button>
+      <button id="simon" onClick="favoriteLocation(this.id)"></button>
+      <button id="mina" onClick="favoriteLocation(this.id)"></button>
+      <button id="erik" onClick="favoriteLocation(this.id)"></button>
     <script src="script.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFVPSxtEKsuYly7LFn1DIXhyrwhAhdNpU&callback=initMap"
     async defer></script>

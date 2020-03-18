@@ -9,3 +9,28 @@ html, body {
   margin: 0;
   padding: 0;
 }
+#controlWrapper{
+  width: 64px;
+  height: 32px;
+  margin: 5px;
+}
+
+#zoomInButton{
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+}
+
+#zoomOutButton{
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+}
