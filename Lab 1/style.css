@@ -12,24 +12,7 @@ html, body {
 #controlWrapper{
   margin: 5px;
 }
-.zoombuttons .zoombutton{
-  background-color: white; /* Green */
-  border: 1px solid black;
-  color: black;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  cursor: pointer;
-  float: left;
-}
 
-
-
-.zoombuttons .zoombutton:hover {
-  background-color: gray;
-}
 .locationbuttons .locationbutton{
   background-color: white; /* Green */
   border: 1px solid black;
@@ -40,13 +23,31 @@ html, body {
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
+  padding-left: 10px;
+  float: left;
   
 }
 .locationbuttons .locationbutton:hover{
   background-color: gray;
 }
 
+.zoombuttons .zoombutton{
+  background-color: white; /* Green */
+  border: 1px solid black;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  
+  
+}
 
+.zoombuttons .zoombutton:hover {
+  background-color: gray;
+}
 
 .goFS{
   border-style: solid;

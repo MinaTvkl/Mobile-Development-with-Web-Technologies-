@@ -48,18 +48,27 @@ function exitfullscreen(){
 }
 
 function favoriteLocation (id){
+  
   if (id == "erik"){
-  map.setCenter({ lat: 59.357025, lng: 18.040951 })
+    let position = { lat: 59.357025, lng: 18.040951 }
+    map.setCenter(position)
+    placeMarker(position , "Eriks fovvoställe")
   }
   else if(id == "simon"){
-    map.setCenter({ lat: 59.346371, lng: 18.061760 })
+    let position = { lat: 59.346371, lng: 18.061760 }
+    map.setCenter(position)
+    placeMarker(position , "Simon fovvoställe")
   }
   else if(id == "mina"){
-    map.setCenter({ lat: 59.317291, lng: 18.060765 })
+    let position = { lat: 59.317291, lng: 18.060765 };
+    map.setCenter(position); 
+    placeMarker(position , "Minas fovvoställe")
   }
 }
 function showPosition(position){
-  map.setCenter({ lat: position.coords.latitude, lng: position.coords.longitude })
+  position = { lat: position.coords.latitude, lng: position.coords.longitude };
+  map.setCenter(position)
+  placeMarker(position , "Din position")
 }
 
 function getLocation(){
@@ -71,6 +80,18 @@ function getLocation(){
  } else{
     alert("Sorry, browser does not support geolocation!");
  }
+}
+
+function placeMarker(location, text){
+  
+  let marker = new google.maps.Marker({
+    animation: google.maps.Animation.DROP,
+    position: location,
+    map: map,
+    title: text
+  });
+  marker.setMap(map);
+
 }
 
 
