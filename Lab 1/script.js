@@ -6,8 +6,9 @@ function initMap() {
       disableDefaultUI: true //turns off default buttons
   });
   map.setTilt(45);
-  var zoomInButton = document.getElementById('zoomInButton')
-var zoomOutButton = document.getElementById('zoomOutButton')
+var zoomInButton = document.getElementById('zoomInButton');
+var zoomOutButton = document.getElementById('zoomOutButton');
+var currentlocation = document.getElementById("currentLocation");
 
 google.maps.event.addDomListener(zoomInButton, 'click', function() {
   map.setZoom(map.getZoom() + 1);
@@ -19,8 +20,8 @@ google.maps.event.addDomListener(zoomOutButton, 'click', function() {
   map.setZoom(map.getZoom() - 1);
 });
 
-google.maps.event.addDomListener(zoomOutButton, 'click', function() {
-  map.setZoom(map.getZoom() - 1);
+google.maps.event.addDomListener(currentlocation, 'click', function() {
+  getLocation();
   });
 
   var goFS = document.getElementById("goFS");
@@ -43,13 +44,16 @@ function favoriteLocation (id){
     map.setCenter({ lat: 59.317291, lng: 18.060765 })
   }
 }
+function showPosition(position){
+  map.setCenter({ lat: position.coords.latitude, lng: position.coords.longitude })
+}
 
 function getLocation(){
   if(navigator.geolocation){
-    // timeout at 60000 milliseconds (60 seconds)
-    var options = {timeout:60000};
-    navigator.geolocation.getCurrentPosition
-    (showLocation, errorHandler, options);
+    
+    navigator.geolocation.getCurrentPosition(showPosition);
+    
+    
  } else{
     alert("Sorry, browser does not support geolocation!");
  }
