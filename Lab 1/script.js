@@ -26,18 +26,22 @@ google.maps.event.addDomListener(currentlocation, 'click', function() {
   });
 
 google.maps.event.addDomListener(requestFullscreen,"click", function() {
+  fullscreenmap();
+  
+  });
+  
+
+}
+
+function fullscreenmap(){
   if (document.fullscreenEnabled) {
     document.getElementById("map").requestFullscreen();
-  console.log("något hände");
+    console.log("Du ska vara i fullscreen");
     // supported
     }
   else{
     alert("Sorry, browser does not support fullscreen!");
     }
-  
-  });
-  
-
 }
 
 function favoriteLocation (id){
