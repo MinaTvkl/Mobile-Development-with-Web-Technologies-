@@ -17,7 +17,18 @@ google.maps.event.addDomListener(zoomInButton, 'click', function() {
 // Setup the click event listener - zoomOut
 google.maps.event.addDomListener(zoomOutButton, 'click', function() {
   map.setZoom(map.getZoom() - 1);
-});  
+});
+
+google.maps.event.addDomListener(zoomOutButton, 'click', function() {
+  map.setZoom(map.getZoom() - 1);
+  });
+
+  var goFS = document.getElementById("goFS");
+  google.maps.event.addDomListener(goFS,"click", function() {
+  document.documentElement.requestFullscreen();
+
+  }, false);
+  
 
 }
 
@@ -43,3 +54,5 @@ function getLocation(){
     alert("Sorry, browser does not support geolocation!");
  }
 }
+
+
