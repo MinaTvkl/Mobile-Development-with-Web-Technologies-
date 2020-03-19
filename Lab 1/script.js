@@ -9,6 +9,7 @@ function initMap() {
 var zoomInButton = document.getElementById('zoomInButton');
 var zoomOutButton = document.getElementById('zoomOutButton');
 var currentlocation = document.getElementById("currentLocation");
+var requestFullscreen = document.getElementById("goFS");
 
 google.maps.event.addDomListener(zoomInButton, 'click', function() {
   map.setZoom(map.getZoom() + 1);
@@ -24,11 +25,17 @@ google.maps.event.addDomListener(currentlocation, 'click', function() {
   getLocation();
   });
 
-  var goFS = document.getElementById("goFS");
-  google.maps.event.addDomListener(goFS,"click", function() {
-  document.documentElement.requestFullscreen();
-
-  }, false);
+google.maps.event.addDomListener(requestFullscreen,"click", function() {
+  if (document.fullscreenEnabled) {
+    document.getElementById("map").requestFullscreen();
+  console.log("något hände");
+    // supported
+    }
+  else{
+    alert("Sorry, browser does not support fullscreen!");
+    }
+  
+  });
   
 
 }
