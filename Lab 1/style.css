@@ -10,30 +10,43 @@ html, body {
   padding: 0;
 }
 #controlWrapper{
-  width: 64px;
-  height: 32px;
   margin: 5px;
 }
-
-#zoomInButton{
-  border-style: solid;
-  border-color: black;
-  border-width: 1px;
-  cursor: pointer;
-  width: 32px;
-  height: 32px;
+.zoombuttons .zoombutton{
+  background-color: white; /* Green */
+  border: 1px solid black;
+  color: black;
+  padding: 15px 32px;
   text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  float: left;
 }
 
-#zoomOutButton{
-  border-style: solid;
-  border-color: black;
-  border-width: 1px;
-  cursor: pointer;
-  width: 32px;
-  height: 32px;
-  text-align: center;
+
+
+.zoombuttons .zoombutton:hover {
+  background-color: gray;
 }
+.locationbuttons .locationbutton{
+  background-color: white; /* Green */
+  border: 1px solid black;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  
+}
+.locationbuttons .locationbutton:hover{
+  background-color: gray;
+}
+
+
 
 .goFS{
   border-style: solid;
@@ -44,6 +57,7 @@ html, body {
   height: 32px;
   text-align: center;
   float:left;
+  
 
 
 }
@@ -118,3 +132,4 @@ html, body {
   #myDiv {
     display: none;
     text-align: center;
+  }

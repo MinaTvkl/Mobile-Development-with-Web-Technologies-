@@ -27,7 +27,6 @@ google.maps.event.addDomListener(currentlocation, 'click', function() {
 
 google.maps.event.addDomListener(requestFullscreen,"click", function() {
   fullscreenmap();
-  
   });
   
 
@@ -35,13 +34,17 @@ google.maps.event.addDomListener(requestFullscreen,"click", function() {
 
 function fullscreenmap(){
   if (document.fullscreenEnabled) {
-    document.getElementById("map").requestFullscreen();
+    document.getElementById("myDiv").requestFullscreen();
     console.log("Du ska vara i fullscreen");
     // supported
     }
   else{
     alert("Sorry, browser does not support fullscreen!");
     }
+}
+//kan användas för att ta sig ur en fullscreen
+function exitfullscreen(){
+  document.exitFullscreen();
 }
 
 function favoriteLocation (id){
