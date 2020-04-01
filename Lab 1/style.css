@@ -97,8 +97,8 @@ html, body {
     border-top: 16px solid #3498db;
     width: 120px;
     height: 120px;
-    -webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
   }
   
   @-webkit-keyframes spin {
@@ -115,9 +115,9 @@ html, body {
   .animate-bottom {
     position: relative;
     -webkit-animation-name: animatebottom;
-    -webkit-animation-duration: 1s;
+    -webkit-animation-duration: 0.5s;
     animation-name: animatebottom;
-    animation-duration: 1s
+    animation-duration: 0.5s
   }
   
   @-webkit-keyframes animatebottom {
