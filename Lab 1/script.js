@@ -25,12 +25,14 @@ google.maps.event.addDomListener(currentlocation, 'click', function() {
   getLocation();
   });
 
-google.maps.event.addDomListener(requestFullscreen,"click", function() {
-  fullscreenmap();
-  });
-  
 
 }
+
+
+
+
+
+
 
 function fullscreenmap(){
   if (document.fullscreenEnabled) {

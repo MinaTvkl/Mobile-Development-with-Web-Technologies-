@@ -19,7 +19,8 @@
     </div>
 
     <div id="myDiv" style="display:none;">
-      <div id="goFS" draggable="true"><h2>Click here to go fullscreen</h2></div>
+      <p>
+      <div id="hej" draggable="true"><button onClick= "fullScreen()"> Click here to go fullscreen </h2> </button></div>
       <div id="map"></div>
       <div id="controlWrapper">
         
@@ -49,6 +50,20 @@
         document.getElementById("intro").style.display = "none";
         document.getElementById("myDiv").style.display = "block";
       }
+
+      var elem = document.getElementById("myDiv");
+
+      function fullScreen() {
+        if (elem.requestFullscreen())
+        elem.requestFullscreen()
+        else
+      console.log("clicked")
+      }
+
+      function exitScreen() {
+        elem.exitFullscreen()
+      }
+
       </script>
 
     <script src="script.js"></script>
