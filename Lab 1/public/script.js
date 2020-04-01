@@ -32,9 +32,15 @@ google.maps.event.addDomListener(requestFullscreen,"click", function() {
 
 }
 
+function myFunction() {
+  myVar = setTimeout(showPage, 3000);
+}
+
+var elem = document.getElementById("myDiv")
+
 function fullscreenmap(){
   if (document.fullscreenEnabled) {
-    document.getElementById("myDiv").requestFullscreen();
+    elem.requestFullscreen();
     console.log("Du ska vara i fullscreen");
     // supported
     }
@@ -42,8 +48,9 @@ function fullscreenmap(){
     alert("Sorry, browser does not support fullscreen!");
     }
 }
+
 //kan användas för att ta sig ur en fullscreen
-function exitfullscreen(){
+function closeFullscreen(){
   document.exitFullscreen();
 }
 
