@@ -6,8 +6,10 @@ function initMap() {
       disableDefaultUI: true //turns off default buttons
   });
   map.setTilt(45);
-  var zoomInButton = document.getElementById('zoomInButton')
-var zoomOutButton = document.getElementById('zoomOutButton')
+var zoomInButton = document.getElementById('zoomInButton');
+var zoomOutButton = document.getElementById('zoomOutButton');
+var currentlocation = document.getElementById("currentLocation");
+var requestFullscreen = document.getElementById("goFS");
 
 google.maps.event.addDomListener(zoomInButton, 'click', function() {
   map.setZoom(map.getZoom() + 1);
@@ -19,40 +21,77 @@ google.maps.event.addDomListener(zoomOutButton, 'click', function() {
   map.setZoom(map.getZoom() - 1);
 });
 
-google.maps.event.addDomListener(zoomOutButton, 'click', function() {
-  map.setZoom(map.getZoom() - 1);
+google.maps.event.addDomListener(currentlocation, 'click', function() {
+  getLocation();
   });
 
-  var goFS = document.getElementById("goFS");
-  google.maps.event.addDomListener(goFS,"click", function() {
-  document.documentElement.requestFullscreen();
-
-  }, false);
+google.maps.event.addDomListener(requestFullscreen,"click", function() {
+  fullscreenmap();
+  });
   
 
 }
 
+function fullscreenmap(){
+  if (document.fullscreenEnabled) {
+    document.getElementById("myDiv").requestFullscreen();
+    console.log("Du ska vara i fullscreen");
+    // supported
+    }
+  else{
+    alert("Sorry, browser does not support fullscreen!");
+    }
+}
+//kan användas för att ta sig ur en fullscreen
+function exitfullscreen(){
+  document.exitFullscreen();
+}
+
 function favoriteLocation (id){
+  
   if (id == "erik"){
-  map.setCenter({ lat: 59.357025, lng: 18.040951 })
+    let position = { lat: 59.357025, lng: 18.040951 }
+    map.setCenter(position)
+    placeMarker(position , "Eriks fovvoställe")
   }
   else if(id == "simon"){
-    map.setCenter({ lat: 59.346371, lng: 18.061760 })
+    let position = { lat: 59.346371, lng: 18.061760 }
+    map.setCenter(position)
+    placeMarker(position , "Simon fovvoställe")
   }
   else if(id == "mina"){
-    map.setCenter({ lat: 59.317291, lng: 18.060765 })
+    let position = { lat: 59.317291, lng: 18.060765 };
+    map.setCenter(position); 
+    placeMarker(position , "Minas fovvoställe")
   }
+}
+function showPosition(position){
+  position = { lat: position.coords.latitude, lng: position.coords.longitude };
+  map.setCenter(position)
+  placeMarker(position , "Din position")
 }
 
 function getLocation(){
   if(navigator.geolocation){
-    // timeout at 60000 milliseconds (60 seconds)
-    var options = {timeout:60000};
-    navigator.geolocation.getCurrentPosition
-    (showLocation, errorHandler, options);
+    
+    navigator.geolocation.getCurrentPosition(showPosition);
+    
+    
  } else{
     alert("Sorry, browser does not support geolocation!");
  }
+}
+
+function placeMarker(location, text){
+  
+  let marker = new google.maps.Marker({
+    animation: google.maps.Animation.DROP,
+    position: location,
+    map: map,
+    title: text
+  });
+  marker.setMap(map);
+
 }
 
 
