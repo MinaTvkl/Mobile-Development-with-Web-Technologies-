@@ -20,12 +20,51 @@
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
     <script src="script.js"></script>
+    <script>var showTemplateDialog = function() {
+        var dialog = document.getElementById('my-dialog');
+      
+        if (dialog) {
+          dialog.show();
+        } else {
+          ons.createElement('dialog.html', { append: true })
+            .then(function(dialog) {
+              dialog.show();
+            });
+        }
+      };
+      
+      var hideDialog = function(id) {
+        document
+          .getElementById(id)
+          .hide();
+      };</script>
 </head>
 <body>
     <ons-button onclick="ons.notification.alert('Hello World!')">Click Me</ons-button>
-    <ons-toolbar>
-        <div class="center"id="header">Slide for more</div>
+    <ons-toolbar id="header">
+        <div class="left">
+            <ons-toolbar-button>
+              <ons-icon icon="md-menu"></ons-icon>
+            </ons-toolbar-button>
+          </div>
+        <div class="center">Slide for more</div>
+        <div class="right">
+            <ons-toolbar-button onclick="showTemplateDialog()">Button</ons-toolbar-button>
+          </div>
     </ons-toolbar>
+    <template id="dialog.html">
+        <ons-dialog id="my-dialog">
+          <div style="text-align: center; padding: 10px;">
+            <p>
+              Lick my cherry
+            </p>
+      
+            <p>
+              <ons-button onclick="hideDialog('my-dialog')">Close</ons-button>
+            </p>
+          </div>
+        </ons-dialog>
+      </template>
     <ons-page>
         <ons-tabbar swipeable position="auto" id="header" hej>
           <ons-tab page="about.html" label="About" icon="md-home" id="about">
@@ -76,6 +115,19 @@
                     <li>Feel the connection between the top of the head and the feet.</li>
                 </ul>
             </div>
+            <ons-list>
+                <ons-list-header>Task compleation</ons-list-header>
+                <ons-list-item>
+                  <div class="center">
+                    Done with task
+                  </div>
+                  <div class="right">
+                    <ons-switch></ons-switch>
+                  </div>
+                </ons-list-item>
+                
+              </ons-list>
+            </ons-page>
         </ons-page>
     </template>
     <template id="page4.html">
@@ -98,6 +150,18 @@
                     <li>Experience the breath flowing in and out of the body.</li>
                 </ul>
             </div>
+            <ons-list>
+                <ons-list-header>Task compleation</ons-list-header>
+                <ons-list-item>
+                  <div class="center">
+                    Done with task
+                  </div>
+                  <div class="right">
+                    <ons-switch></ons-switch>
+                  </div>
+                </ons-list-item>
+                
+              </ons-list>
         </ons-page>
     </template>
     <template id="page5.html">
@@ -126,6 +190,18 @@
                     <li>The space surrounding the head.</li>
                 </ul>
             </div>
+            <ons-list>
+                <ons-list-header>Task compleation</ons-list-header>
+                <ons-list-item>
+                  <div class="center">
+                    Done with task
+                  </div>
+                  <div class="right">
+                    <ons-switch></ons-switch>
+                  </div>
+                </ons-list-item>
+                
+              </ons-list>
         </ons-page>
     </template>
     <!--
