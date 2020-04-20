@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset="utf-8" />
+    <title>Lab 2 Mina</title>
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/7.14.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/7.14.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/7.14.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/7.14.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/7.14.0/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <ons-button onclick="ons.notification.alert('Hello World!')">Click Me</ons-button>
+    <ons-page>
+        <ons-toolbar>
+          <div class="center">Tab 1</div>
+        </ons-toolbar>
+      
+        <ons-tabbar swipeable position="auto">
+          <ons-tab page="about.html" label="About" icon="md-home" active>
+          </ons-tab>
+          <ons-tab page="page3.html" label="Feet" icon="md-settings" active-icon="md-face">
+          </ons-tab>
+          <ons-tab page="page4.html" label="Shoulders" icon="md-settings" active-icon="md-face">
+        </ons-tab>
+        <ons-tab page="page5.html" label="Face" icon="md-settings" active-icon="md-face">
+        </ons-tab>
+        </ons-tabbar>
+      </ons-page>
+      
+      <template id="about.html">
+        <ons-page id="about">
+            <ons-toolbar>
+                <div class="left"><ons-back-button>Home</ons-back-button></div>
+                <div class="center">About</div>
+            </ons-toolbar>
+            <div class="my-header">
+                <img class="my-header-image" src="photos/photo-default.jpg" />
+            </div>
+            <div class="my-content">
+                <h1>Relaxation iBeacons</h1>
+                <p>Please move within range of the Relaxation iBeacons.</p>
+            </div>
+        </ons-page>
+    </template>
+    <template id="page3.html">
+        <ons-page id="page3">
+            <ons-toolbar>
+                <div class="left"><ons-back-button>Home</ons-back-button></div>
+                <div class="center">Feet</div>
+            </ons-toolbar>
+            <div class="my-header">
+                <img class="my-header-image" src="photos/photo-feet.jpg" />
+            </div>
+            <div class="my-content">
+                <h1>Feel Your Feet</h1>
+                <ul>
+                    <li>Stand on your feet.</li>
+                    <li>Experience the contact with the ground.</li>
+                    <li>Feel into the soles of the feet.</li>
+                    <li>Feel the knees.</li>
+                    <li>The hips.</li>
+                    <li>The spine.</li>
+                    <li>Shoulders.</li>
+                    <li>Neck.</li>
+                    <li>Head.</li>
+                    <li>Feel the connection between the top of the head and the feet.</li>
+                </ul>
+            </div>
+        </ons-page>
+    </template>
+    <template id="page4.html">
+        <ons-page id="page4">
+            <ons-toolbar>
+                <div class="left"><ons-back-button>Home</ons-back-button></div>
+                <div class="center">Shoulders</div>
+            </ons-toolbar>
+            <div class="my-header">
+                <img class="my-header-image" src="photos/photo-shoulders-1.jpg" />
+            </div>
+            <div class="my-content">
+                <h1>Feel Your Shoulders</h1>
+                <ul>
+                    <li>Let your arms hang loose.</li>
+                    <li>Become aware of the shoulders.</li>
+                    <li>Slightly lift one shoulder and release it.</li>
+                    <li>Let the shoulder come all the way down.</li>
+                    <li>Lift the other shoulder and release it.</li>
+                    <li>Alternate three more times on each side.</li>
+                    <li>Experience the breath flowing in and out of the body.</li>
+                </ul>
+            </div>
+        </ons-page>
+    </template>
+    <template id="page5.html">
+        <ons-page id="page5">
+            <ons-toolbar>
+                <div class="left"><ons-back-button>Home</ons-back-button></div>
+                <div class="center">Face</div>
+            </ons-toolbar>
+            <div class="my-header">
+                <img class="my-header-image" src="photos/photo-face.jpg" />
+            </div>
+            <div class="my-content">
+                <h1>Feel Your Face</h1>
+                <ul>
+                    <li>Become aware of your face.</li>
+                    <li>Feel the forehead.</li>
+                    <li>The eyebrows.</li>
+                    <li>Eyes.</li>
+                    <li>Nose.</li>
+                    <li>Nostrils.</li>
+                    <li>Air flowing through the nostrils.</li>
+                    <li>Cheeks.</li>
+                    <li>Jaw.</li>
+                    <li>Lips.</li>
+                    <li>Tongue.</li>
+                    <li>Whole of the head.</li>
+                    <li>The space surrounding the head.</li>
+                </ul>
+            </div>
+        </ons-page>
+    </template>
+    <!--
+      <template id="tab1.html">
+        <ons-page id="Face">
+          <p style="text-align: center;">
+            This is the first page.
+          </p>
+        </ons-page>
+      </template>
+      
+      <template id="tab2.html">
+        <ons-page id="Shoulders">
+          <p style="text-align: center;">
+            This is the second page.
+          </p>
+        </ons-page>
+      </template>
+    -->
+<!--
+    <ons-navigator swipeable id="myNavigator" page="home.html"></ons-navigator>
+    <template id="home.html">
+        <ons-page id="home">
+            <ons-toolbar>
+                <div class="center">Home</div>
+            </ons-toolbar>
+            <p>This page is made as a mobile friendly way to promote relaxation.</p>
+            <ons-button id="about-button">About</ons-button>
+            <ons-button id="push-button3">Feet</ons-button>
+            <ons-button id="push-button4">Shoulders</ons-button>
+            <ons-button id="push-button5">Face</ons-button>
+        </ons-page>
+    </template>
+    <template id="about.html">
+        <ons-page id="about">
+            <ons-toolbar>
+                <div class="left"><ons-back-button>Home</ons-back-button></div>
+                <div class="center">About</div>
+            </ons-toolbar>
+            <div class="my-header">
+                <img class="my-header-image" src="photos/photo-default.jpg" />
+            </div>
+            <div class="my-content">
+                <h1>Relaxation iBeacons</h1>
+                <p>Please move within range of the Relaxation iBeacons.</p>
+            </div>
+        </ons-page>
+    </template>
+    <template id="page3.html">
+        <ons-page id="page3">
+            <ons-toolbar>
+                <div class="left"><ons-back-button>Home</ons-back-button></div>
+                <div class="center">Feet</div>
+            </ons-toolbar>
+            <div class="my-header">
+                <img class="my-header-image" src="photos/photo-feet.jpg" />
+            </div>
+            <div class="my-content">
+                <h1>Feel Your Feet</h1>
+                <ul>
+                    <li>Stand on your feet.</li>
+                    <li>Experience the contact with the ground.</li>
+                    <li>Feel into the soles of the feet.</li>
+                    <li>Feel the knees.</li>
+                    <li>The hips.</li>
+                    <li>The spine.</li>
+                    <li>Shoulders.</li>
+                    <li>Neck.</li>
+                    <li>Head.</li>
+                    <li>Feel the connection between the top of the head and the feet.</li>
+                </ul>
+            </div>
+        </ons-page>
+    </template>
+    <template id="page4.html">
+        <ons-page id="page4">
+            <ons-toolbar>
+                <div class="left"><ons-back-button>Home</ons-back-button></div>
+                <div class="center">Shoulders</div>
+            </ons-toolbar>
+            <div class="my-header">
+                <img class="my-header-image" src="photos/photo-shoulders-1.jpg" />
+            </div>
+            <div class="my-content">
+                <h1>Feel Your Shoulders</h1>
+                <ul>
+                    <li>Let your arms hang loose.</li>
+                    <li>Become aware of the shoulders.</li>
+                    <li>Slightly lift one shoulder and release it.</li>
+                    <li>Let the shoulder come all the way down.</li>
+                    <li>Lift the other shoulder and release it.</li>
+                    <li>Alternate three more times on each side.</li>
+                    <li>Experience the breath flowing in and out of the body.</li>
+                </ul>
+            </div>
+        </ons-page>
+    </template>
+    <template id="page5.html">
+        <ons-page id="page5">
+            <ons-toolbar>
+                <div class="left"><ons-back-button>Home</ons-back-button></div>
+                <div class="center">Face</div>
+            </ons-toolbar>
+            <div class="my-header">
+                <img class="my-header-image" src="photos/photo-face.jpg" />
+            </div>
+            <div class="my-content">
+                <h1>Feel Your Face</h1>
+                <ul>
+                    <li>Become aware of your face.</li>
+                    <li>Feel the forehead.</li>
+                    <li>The eyebrows.</li>
+                    <li>Eyes.</li>
+                    <li>Nose.</li>
+                    <li>Nostrils.</li>
+                    <li>Air flowing through the nostrils.</li>
+                    <li>Cheeks.</li>
+                    <li>Jaw.</li>
+                    <li>Lips.</li>
+                    <li>Tongue.</li>
+                    <li>Whole of the head.</li>
+                    <li>The space surrounding the head.</li>
+                </ul>
+            </div>
+        </ons-page>
+    </template>
+-->
+
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+        try {
+          let app = firebase.app();
+          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+        } catch (e) {
+          console.error(e);
+          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+        }
+    });
+    </script>
+</body>
+</html>
