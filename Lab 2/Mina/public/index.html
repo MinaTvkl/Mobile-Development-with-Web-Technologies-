@@ -40,6 +40,7 @@
           .hide();
       };
     </script>
+
     <script>
     window.fn = {};
 
@@ -64,19 +65,22 @@
         <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
           <ons-page>
             <ons-list>
-              <ons-list-item  tappable>
-                Home
-              </ons-list-item>
-              <ons-list-item  tappable>
-                Settings
-              </ons-list-item>
-              <ons-list-item tappable>
+              <ons-list-item onclick="fn.load('about.html')" tappable>
                 About
+              </ons-list-item>
+              <ons-list-item onclick="fn.load('page3.html')" tappable>
+                Feet
+              </ons-list-item >
+              <ons-list-item onclick="fn.load('page4.html')" tappable>
+                Shoulders
+              </ons-list-item>
+              <ons-list-item onclick="fn.load('page5.html')" tappable>
+                Face
               </ons-list-item>
             </ons-list>
           </ons-page>
         </ons-splitter-side>
-        <ons-splitter-content id="content" page="home.html"></ons-splitter-content>
+        <ons-splitter-content id="content" page="about.html"></ons-splitter-content>
       </ons-splitter>
 
     <ons-button onclick="ons.notification.alert('Hello World!')">Click Me</ons-button>
@@ -93,8 +97,6 @@
     </ons-toolbar>
 
     
-
-
     <template id="dialog.html">
         <ons-dialog id="my-dialog">
           <div style="text-align: center; padding: 10px;">
@@ -108,8 +110,9 @@
           </div>
         </ons-dialog>
       </template>
+
     <ons-page>
-        <ons-tabbar swipeable position="auto" id="header" hej>
+        <ons-tabbar swipeable position="auto" id="header">
           <ons-tab page="about.html" label="About" icon="md-home" id="about">
           </ons-tab>
           <ons-tab page="page3.html" label="Feet" icon="md-settings" active-icon="md-face" id="feet">
