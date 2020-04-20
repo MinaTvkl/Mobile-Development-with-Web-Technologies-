@@ -20,7 +20,8 @@
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
     <script src="script.js"></script>
-    <script>var showTemplateDialog = function() {
+    <script>
+    var showTemplateDialog = function() {
         var dialog = document.getElementById('my-dialog');
       
         if (dialog) {
@@ -37,21 +38,63 @@
         document
           .getElementById(id)
           .hide();
-      };</script>
+      };
+    </script>
+    <script>
+    window.fn = {};
+
+    window.fn.open = function() {
+        var menu = document.getElementById('menu');
+        menu.open();
+    };
+
+    window.fn.load = function(page) {
+        var content = document.getElementById('content');
+        var menu = document.getElementById('menu');
+        content.load(page)
+            .then(menu.close.bind(menu));
+    };
+        
+        
+    </script>
 </head>
 <body>
+    
+    <ons-splitter>
+        <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
+          <ons-page>
+            <ons-list>
+              <ons-list-item  tappable>
+                Home
+              </ons-list-item>
+              <ons-list-item  tappable>
+                Settings
+              </ons-list-item>
+              <ons-list-item tappable>
+                About
+              </ons-list-item>
+            </ons-list>
+          </ons-page>
+        </ons-splitter-side>
+        <ons-splitter-content id="content" page="home.html"></ons-splitter-content>
+      </ons-splitter>
+
     <ons-button onclick="ons.notification.alert('Hello World!')">Click Me</ons-button>
     <ons-toolbar id="header">
         <div class="left">
-            <ons-toolbar-button>
+            <ons-toolbar-button onclick="fn.open()">
               <ons-icon icon="md-menu"></ons-icon>
             </ons-toolbar-button>
-          </div>
+        </div>
         <div class="center">Slide for more</div>
         <div class="right">
             <ons-toolbar-button icon="ion-navicon" onclick="showTemplateDialog()">Button</ons-toolbar-button>
           </div>
     </ons-toolbar>
+
+    
+
+
     <template id="dialog.html">
         <ons-dialog id="my-dialog">
           <div style="text-align: center; padding: 10px;">
