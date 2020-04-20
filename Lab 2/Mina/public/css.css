@@ -1,0 +1,32 @@
+#about {
+    background-color: lightblue;
+}
+
+#feet {
+    background-color: lightgreen;
+}
+
+#face {
+    background-color: lightskyblue;
+}
+
+#shoulders {
+    background-color: lightcoral;
+}
+
+.center {
+    background-color: black;
+
+}
+
+#header{
+    background-color: limegreen;
+    font-style: italic;
+    }
+
+li{
+    font-size: 30px;
+}
+
+h1{font-size:40px;
+    font-style:bold;}

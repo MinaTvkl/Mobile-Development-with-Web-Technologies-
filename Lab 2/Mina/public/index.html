@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <link type="text/css" rel="stylesheet" href="css.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
@@ -23,18 +24,14 @@
 <body>
     <ons-button onclick="ons.notification.alert('Hello World!')">Click Me</ons-button>
     <ons-page>
-        <ons-toolbar>
-          <div class="center">Tab 1</div>
-        </ons-toolbar>
-      
-        <ons-tabbar swipeable position="auto">
-          <ons-tab page="about.html" label="About" icon="md-home" active>
+        <ons-tabbar swipeable position="auto" id="header" hej>
+          <ons-tab page="about.html" label="About" icon="md-home" id="about">
           </ons-tab>
-          <ons-tab page="page3.html" label="Feet" icon="md-settings" active-icon="md-face">
+          <ons-tab page="page3.html" label="Feet" icon="md-settings" active-icon="md-face" id="feet">
           </ons-tab>
-          <ons-tab page="page4.html" label="Shoulders" icon="md-settings" active-icon="md-face">
+          <ons-tab page="page4.html" label="Shoulders" icon="md-settings" active-icon="md-face" id="shoulders">
         </ons-tab>
-        <ons-tab page="page5.html" label="Face" icon="md-settings" active-icon="md-face">
+        <ons-tab page="page5.html" label="Face" icon="md-settings" active-icon="md-face" id="face">
         </ons-tab>
         </ons-tabbar>
       </ons-page>
@@ -42,8 +39,7 @@
       <template id="about.html">
         <ons-page id="about">
             <ons-toolbar>
-                <div class="left"><ons-back-button>Home</ons-back-button></div>
-                <div class="center">About</div>
+                <div class="center" id="">About</div>
             </ons-toolbar>
             <div class="my-header">
                 <img class="my-header-image" src="photos/photo-default.jpg" />
@@ -57,7 +53,6 @@
     <template id="page3.html">
         <ons-page id="page3">
             <ons-toolbar>
-                <div class="left"><ons-back-button>Home</ons-back-button></div>
                 <div class="center">Feet</div>
             </ons-toolbar>
             <div class="my-header">
@@ -83,7 +78,6 @@
     <template id="page4.html">
         <ons-page id="page4">
             <ons-toolbar>
-                <div class="left"><ons-back-button>Home</ons-back-button></div>
                 <div class="center">Shoulders</div>
             </ons-toolbar>
             <div class="my-header">
@@ -106,7 +100,6 @@
     <template id="page5.html">
         <ons-page id="page5">
             <ons-toolbar>
-                <div class="left"><ons-back-button>Home</ons-back-button></div>
                 <div class="center">Face</div>
             </ons-toolbar>
             <div class="my-header">
