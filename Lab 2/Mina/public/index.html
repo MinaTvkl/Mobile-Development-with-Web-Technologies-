@@ -65,23 +65,52 @@
         <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
           <ons-page>
             <ons-list>
+              <ons-list-item onclick="fn.load('home.html')" tappable>
+                Home
+              </ons-list-item>
+              <ons-list-item onclick="fn.load('settings.html')" tappable>
+                Settings
+              </ons-list-item>
               <ons-list-item onclick="fn.load('about.html')" tappable>
                 About
-              </ons-list-item>
-              <ons-list-item onclick="fn.load('page3.html')" tappable>
-                Feet
-              </ons-list-item >
-              <ons-list-item onclick="fn.load('page4.html')" tappable>
-                Shoulders
-              </ons-list-item>
-              <ons-list-item onclick="fn.load('page5.html')" tappable>
-                Face
               </ons-list-item>
             </ons-list>
           </ons-page>
         </ons-splitter-side>
-        <ons-splitter-content id="content" page="about.html"></ons-splitter-content>
+        <ons-splitter-content id="about" page="about.html"></ons-splitter-content>
       </ons-splitter>
+      
+      <template id="">
+        <ons-page>
+          <ons-toolbar>
+            <div class="left">
+              <ons-toolbar-button onclick="fn.open()">
+                <ons-icon icon="md-menu"></ons-icon>
+              </ons-toolbar-button>
+            </div>
+            <div class="center">
+              Main
+            </div>
+          </ons-toolbar>
+
+        </ons-page>
+      </template>
+      
+      <template id="settings.html">
+        <ons-page>
+          <ons-toolbar>
+            <div class="left">
+              <ons-toolbar-button onclick="fn.open()">
+                <ons-icon icon="md-menu"></ons-icon>
+              </ons-toolbar-button>
+            </div>
+            <div class="center">
+              Settings
+            </div>
+          </ons-toolbar>
+        </ons-page>
+      </template>
+
 
     <ons-button onclick="ons.notification.alert('Hello World!')">Click Me</ons-button>
     <ons-toolbar id="header">
@@ -111,7 +140,8 @@
         </ons-dialog>
       </template>
 
-    <ons-page>
+    <div>
+    <ons-page id="swajp">
         <ons-tabbar swipeable position="auto" id="header">
           <ons-tab page="about.html" label="About" icon="md-home" id="about">
           </ons-tab>
@@ -123,6 +153,7 @@
         </ons-tab>
         </ons-tabbar>
       </ons-page>
+    </div>
       
       <template id="about.html">
         <ons-page id="about">
@@ -137,6 +168,7 @@
                 <p>Please move within range of the Relaxation iBeacons.</p>
             </div>
         </ons-page>
+
     </template>
     <template id="page3.html">
         <ons-page id="page3">
