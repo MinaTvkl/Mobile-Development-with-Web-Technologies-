@@ -56,7 +56,6 @@
             .then(menu.close.bind(menu));
     };
         
-        
     </script>
 </head>
 <body>
@@ -68,8 +67,11 @@
               <ons-list-item onclick="fn.load('home.html')" tappable>
                 Home
               </ons-list-item>
-              <ons-list-item onclick="fn.load('settings.html')" tappable>
-                Settings
+              <ons-list-item onclick="fn.load('page3.html')" tappable>
+                Feet
+              </ons-list-item>
+              <ons-list-item onclick="fn.load('page4.html')" tappable>
+                Shoulders
               </ons-list-item>
               <ons-list-item onclick="fn.load('about.html')" tappable>
                 About
@@ -139,9 +141,8 @@
           </div>
         </ons-dialog>
       </template>
-
-    <div>
-    <ons-page id="swajp">
+      <!--
+      <ons-page>
         <ons-tabbar swipeable position="auto" id="header">
           <ons-tab page="about.html" label="About" icon="md-home" id="about">
           </ons-tab>
@@ -153,11 +154,16 @@
         </ons-tab>
         </ons-tabbar>
       </ons-page>
-    </div>
+    -->
       
       <template id="about.html">
         <ons-page id="about">
             <ons-toolbar>
+                <div class="left">
+                    <ons-toolbar-button onclick="fn.open()">
+                      <ons-icon icon="md-menu"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
                 <div class="center" id="">About</div>
             </ons-toolbar>
             <div class="my-header">
@@ -170,9 +176,15 @@
         </ons-page>
 
     </template>
+
     <template id="page3.html">
         <ons-page id="page3">
             <ons-toolbar>
+                <div class="left">
+                    <ons-toolbar-button onclick="fn.open()">
+                      <ons-icon icon="md-menu"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
                 <div class="center">Feet</div>
             </ons-toolbar>
             <div class="my-header">
@@ -208,9 +220,15 @@
             </ons-page>
         </ons-page>
     </template>
+
     <template id="page4.html">
         <ons-page id="page4">
             <ons-toolbar>
+                <div class="left">
+                    <ons-toolbar-button onclick="fn.open()">
+                      <ons-icon icon="md-menu"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
                 <div class="center">Shoulders</div>
             </ons-toolbar>
             <div class="my-header">
@@ -242,9 +260,15 @@
               </ons-list>
         </ons-page>
     </template>
+
     <template id="page5.html">
         <ons-page id="page5">
             <ons-toolbar>
+                <div class="left">
+                    <ons-toolbar-button onclick="fn.open()">
+                      <ons-icon icon="md-menu"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
                 <div class="center">Face</div>
             </ons-toolbar>
             <div class="my-header">
