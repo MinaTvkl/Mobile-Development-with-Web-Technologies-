@@ -61,13 +61,12 @@ export default class FullPage extends React.Component {
       <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
         <ons-page>
           <ons-list>
-            <ons-list-item onclick= {fn.load('home.html')} tappable>
+            <ons-list-item onclick={handleClick()} tappable>
               Home
             </ons-list-item>
           </ons-list>
         </ons-page>
       </ons-splitter-side>
-      <ons-splitter-content id="about" page="about.html"></ons-splitter-content>
     </ons-splitter>
 
         
