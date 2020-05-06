@@ -23,7 +23,7 @@ google.maps.event.addDomListener(zoomOutButton, 'click', function() {
 
 google.maps.event.addDomListener(currentlocation, 'click', function() {
   getLocation();
-  });
+  }); 
 
 google.maps.event.addDomListener(requestFullscreen,"click", function() {
   fullscreenmap();
