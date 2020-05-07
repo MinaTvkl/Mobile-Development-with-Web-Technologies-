@@ -18,7 +18,8 @@
 
 #header{
     background-color: limegreen;
-    font-style: italic;
+    font-style: bold;
+    font-weight: 300;
     }
 
 li{
@@ -27,3 +28,4 @@ li{
 
 h1{font-size:40px;
     font-style:bold;}
+
