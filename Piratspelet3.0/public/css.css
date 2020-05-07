@@ -1,6 +1,15 @@
-#about {
+#play {
     background-color: lightblue;
+    background-image: url("./photos/piratecard.jpg");
+    height: 100%;
 }
+
+#playcard {
+    text-align: center;
+    background-color: lightblue;
+    background-image: url("./photos/piratecard.jpg");
+}
+
 
 #feet {
     background-color: lightgreen;
@@ -18,7 +27,7 @@
 
 #header{
     background-color: limegreen;
-    font-style: bold;
+    font-style: oblique;
     font-weight: 300;
     }
 
@@ -26,6 +35,20 @@ li{
     font-size: 30px;
 }
 
-h1{font-size:40px;
-    font-style:bold;}
+h1 {
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
 
+.cardtext {
+    font-style: bold;
+    font-weight: bold;
+    margin-left: 10%;
+    width: 80%;
+}
+
+
+.play {
+    background-image: url("./photos/piratecard.jpg");
+}
