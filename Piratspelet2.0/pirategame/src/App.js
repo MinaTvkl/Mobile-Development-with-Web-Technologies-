@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import FullPage from './fullpage/fullPage.js';
 import './App.css';
 
+var ons = require('onsenui');
+var Ons = require('react-onsenui');
+var ReactDOM = require('react-dom');
+
 
 
 export default class App extends React.Component {
@@ -12,20 +16,18 @@ export default class App extends React.Component {
   };
 
   
-
   render () {
     return (
-      <div>
-        <Router >
-          <React.Fragment>
-              <Switch>
-                  <Route exact path="/" exact component={() => <FullPage />}/>
-              </Switch>
-          </React.Fragment>
-        </Router>
-      </div>    
-    )
+      <Ons.Page renderToolbar={this.renderToolbar}>
+        <p>This is Onsen UI!</p>
+      </Ons.Page>
+    );
   }
 }
 
+function handleClick() {
+    ons.notification.alert('Hello world!');
+  }
+ 
 
+ 
