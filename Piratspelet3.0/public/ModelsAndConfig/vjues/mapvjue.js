@@ -1,20 +1,23 @@
-import React from 'react';
 import '../App.css';
 import "./mapsscript";
 import MapsModel from "../locationFunctions";
 
-export default class ChooseHero extends React.Component{
+export default class ChooseHero {
     constructor(props){
         super(props);
         this.props = props;
+        this.model = new MapsModel(this.props);
         this.state = {
             freetext:"superman"
         };
         this.myVar;
+        this.location;
         
         
     }
 
+
+    
     componentDidMount() {
         this.props.model.addObserver(() => this.update());
         
@@ -26,7 +29,7 @@ export default class ChooseHero extends React.Component{
 
     render(){
         
-        return <div onload = {loader()}>
+        return <div onload = {this.loader()}>
         
             <div id="intro">
               <h1>Welcome to our map app
@@ -40,15 +43,14 @@ export default class ChooseHero extends React.Component{
         
             <div id="myDiv" style="display:none;">
               <div id="goFS" draggable="true">
-              <button onClick="closeFullscreen()"> Open/Close Fullscreen</button></div>
+              <button onClick={closeFullscreen()}> Open/Close Fullscreen</button></div>
               <div id="map"></div>
               <div id="controlWrapper">
                 
                 <div class ="Locationbuttons">
-                  <button class ="Locationbutton" id="currentLocation" >Din Nuvarande Plats</button>
-                  <button class ="Locationbutton" id="simon" onClick={favoriteLocation(this.id)}> Simons favoritplats</button>
-                  <button class ="Locationbutton" id="mina" onClick={favoriteLocation(this.id)}> Minas favoritplats</button>
-                  <button class ="Locationbutton" id="erik" onClick={favoriteLocation(this.id)}> Eriks Favoritplats</button>
+                  <button class ="Locationbutton" id="currentLocation" onClick={shareLocation()} >Dela din plats Nuvarande Plats</button>
+                  <button class ="Locationbutton" id="simon" onClick={getOthersLocation(this.model)}> Find players</button>
+                  
                 </div>
         
                 <div class ="zoombuttons">
@@ -63,23 +65,21 @@ export default class ChooseHero extends React.Component{
           </div>
     }
   
+  shareLocation(){
+      this.location = getLocation();
+      let currentTime= new Date().getTime();
+      this.model.addYourplaylistToDatabase(this.location, "someText", "name", currentTime )
+  
+  
+    }       
               
-              
-    
+    loader() {
+      this.myVar = setTimeout(showPage, 3000);
+    }
+
+    showPage() {
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("intro").style.display = "none";
+      document.getElementById("myDiv").style.display = "block";
+    }
 }
-
-
-
-function loader() {
-    this.myVar = setTimeout(showPage, 3000);
-  }
-  
-  
-function showPage() {
-    document.getElementById("loader").style.display = "none";
-    document.getElementById("intro").style.display = "none";
-    document.getElementById("myDiv").style.display = "block";
-  }
-
-
-

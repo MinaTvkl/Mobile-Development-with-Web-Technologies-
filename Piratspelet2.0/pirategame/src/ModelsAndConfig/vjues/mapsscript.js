@@ -71,7 +71,7 @@ export function initMap() {
   export function getLocation(){
     if(navigator.geolocation){
       
-      navigator.geolocation.getCurrentPosition(showPosition);
+      return navigator.geolocation.getCurrentPosition(showPosition);
       
       
    } else{
