@@ -48,7 +48,7 @@ class MapsModel extends React.Component {
   getOthersPlaylistsfromdatabase(limit = 5) {
     let locations = [];
     return this.db
-      .ref("piratspelet/locations")
+      .ref("piratspelet")
       .limitToLast(limit)
       .once("value")
       .then((snapshot) => {
@@ -69,7 +69,7 @@ class MapsModel extends React.Component {
 
   //add a playlist to firebase
   addYourplaylistToDatabase(location, text, user, timestamp) {
-    this.db.ref("piratspelet/location/'" + user).set({
+    this.db.ref("piratspelet/" + user).set({
       Location: location,
       Text: text,
       User: user,
