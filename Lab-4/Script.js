@@ -125,6 +125,7 @@ var pubnub = new PubNub({
 
       }
       if(!deviceAngle){
+        document.getElementById("direction-header").innerHTML = "North (but your device does not have a compass)";
         return "north"
       }
     }
