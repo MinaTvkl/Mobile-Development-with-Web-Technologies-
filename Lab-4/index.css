@@ -1,0 +1,66 @@
+body {
+    background-color: gray;
+    background-size: 600% 600%;
+  
+    
+    
+  }
+  
+  #chat-container {
+    width: 70vw;
+    height: 50vh;
+    padding: 50px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 3px;
+  }
+  
+  #chat-input {
+    outline: none;
+    border: 0px;
+    border-radius: 6px;
+    margin-top: 3px;
+  }
+  .chat-message {
+    background-color: lightskyblue;
+    border-radius: 25%;
+    margin: 5px;
+    padding: 5px;
+    clear: both;
+    float: left;
+  }
+  
+  .compass {
+    /* background: rgba(80, 204, 190, 0.3); */
+    width: 20vw;
+    /* border: 2px solid black; */
+    display: grid;
+    border-radius: 3px;
+    /* grid-template-columns: 1fr; */
+    /* width: 40%; */
+    /* height: 70%; */
+    /* width: 10vw; */
+    margin: 1rem;
+  }
+  .compass-icon {
+    /* position: center; */
+    width: 4rem;
+  }
+  #heading {
+    /* text-align: center; */
+    font-size: 1rem;
+  }
+  
+  #direction-header {
+    /* border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black; */
+  
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 3px;
+    margin: 0px;
+    padding-right: 10px;
+    display: inline-block;
+  }
+  
