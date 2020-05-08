@@ -61,37 +61,6 @@
 <body>
     
       
-      <template id="">
-        <ons-page>
-          <ons-toolbar>
-            <div class="left">
-              <ons-toolbar-button onclick="fn.open()">
-                <ons-icon icon="md-menu"></ons-icon>
-              </ons-toolbar-button>
-            </div>
-            <div class="center">
-              Main
-            </div>
-          </ons-toolbar>
-
-        </ons-page>
-      </template>
-      
-      <template id="settings.html">
-        <ons-page>
-          <ons-toolbar>
-            <div class="left">
-              <ons-toolbar-button onclick="fn.open()">
-                <ons-icon icon="md-menu"></ons-icon>
-              </ons-toolbar-button>
-            </div>
-            <div class="center">
-              Settings
-            </div>
-          </ons-toolbar>
-        </ons-page>
-      </template>
-
 
     <ons-button onclick="ons.notification.alert('Hello World!')">Click Me</ons-button>
     <ons-toolbar id="header">
@@ -126,16 +95,16 @@
         <ons-tabbar swipeable position="auto" id="header">
           <ons-tab page="play.html" label="Play" icon="md-home" id="play">
           </ons-tab>
-          <ons-tab page="page3.html" label="Map" icon="md-settings" active-icon="md-face" id="feet">
+          <ons-tab page="page3.html" label="Map" icon="md-settings" active-icon="md-face" id="map">
           </ons-tab>
-        <ons-tab page="page5.html" label="Settings" icon="md-settings" active-icon="md-face" id="face">
+        <ons-tab page="page5.html" label="Settings" icon="md-settings" active-icon="md-face" id="settings">
         </ons-tab>
         </ons-tabbar>
       </ons-page>
 
       
       <template id="play.html">
-        <ons-page id="about">
+        <ons-page id="playcard">
             <ons-toolbar>
                 <div class="left">
                     <ons-toolbar-button onclick="fn.open()">
@@ -144,18 +113,14 @@
                 </div>
                 <div class="center" id="">Play</div>
             </ons-toolbar>
-            <div id="playcard">
+            <div id="playcard" onload="read('piratkort.txt')">
                 <h1>Aaaaaargh!</h1>
-                <p class="cardtext"> En skeppsbruten pirat ligger och guppar i det stora blå och först efter ni fiskat upp denne så inser ni att ni fallit offer för den patetiska poeten. Poeten ligger på däck och mumlar ut sin kommersiella smörja ”Uti havet det blå är vi alla små och då kan närmsta tå förstå en skogsrå” 
-                  Efter många om och men så utmanar han besättningen på rimtävling på valfritt ord som du bestämmer. Första personen som misslyckas eller tvekar en ansenlig stund får ta sig en djup titt i bägaren och dricka tre klunkar. 
+                <p id="quotation"> fe</p>
+                <p class="cardtext"> 
                   </p>
                   <p class="cardtext"> En skeppsbruten pirat ligger och guppar i det stora blå och först efter ni fiskat upp denne så inser ni att ni fallit offer för den patetiska poeten. Poeten ligger på däck och mumlar ut sin kommersiella smörja ”Uti havet det blå är vi alla små och då kan närmsta tå förstå en skogsrå” 
                     Efter många om och men så utmanar han besättningen på rimtävling på valfritt ord som du bestämmer. Första personen som misslyckas eller tvekar en ansenlig stund får ta sig en djup titt i bägaren och dricka tre klunkar. 
-                    </p>
-
-                    <p class="cardtext"> En skeppsbruten pirat ligger och guppar i det stora blå och först efter ni fiskat upp denne så inser ni att ni fallit offer för den patetiska poeten. Poeten ligger på däck och mumlar ut sin kommersiella smörja ”Uti havet det blå är vi alla små och då kan närmsta tå förstå en skogsrå” 
-                      Efter många om och men så utmanar han besättningen på rimtävling på valfritt ord som du bestämmer. Första personen som misslyckas eller tvekar en ansenlig stund får ta sig en djup titt i bägaren och dricka tre klunkar. 
-                      </p>
+                  </p>
             </div>
         </ons-page>
 
@@ -272,6 +237,52 @@
           document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
         }
     });
+
+
+  function read(textFile) {
+      var xhr=new XMLHttpRequest;
+      xhr.open('GET',textFile);
+      xhr.onload=show;
+      xhr.send()
+    }
+
+  function show() {
+      var pre=document.createElement('pre');
+      pre.textContent=this.response;
+      document.body.appendChild(pre)
+  }
+
     </script>
+
+
+<script>
+  const quotes = [{
+    "quote": "This is just a Quote1",
+    "source": "Christopher"
+  },
+  {
+    "quote": "This is just a Quote2",
+    "source": "Martin"
+  },
+  {
+    "quote": "This is just a Quote3",
+    "source": "Dennis"
+  },
+]
+
+var quotation = document.getElementById('quotation'); // get the quotation <p>
+var source = document.getElementById('source'); // get the source <p>
+
+function randomQuote() {
+  let random = quotes[Math.floor(Math.random() * quotes.length)];
+  quotation.innerText = `"${random.quote}"`;
+  source.innerText = random.source;
+}
+
+randomQuote();
+</script>
+
+
+
 </body>
 </html>

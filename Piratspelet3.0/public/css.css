@@ -1,28 +1,31 @@
+/* FIRST THREE STYLES SLIDE MENU*/
+
 #play {
     background-color: lightblue;
     background-image: url("./photos/piratecard.jpg");
     height: 100%;
 }
 
+#map {
+    background-color: limegreen;
+    height: 100%;
+}
+
+#settings {
+    background-color: lightcoral;
+    height: 100%;
+}
+
+
+
+
 #playcard {
     text-align: center;
     background-color: lightblue;
     background-image: url("./photos/piratecard.jpg");
+    background-size: cover;
+    height: 100%;
 }
-
-
-#feet {
-    background-color: lightgreen;
-}
-
-#face {
-    background-color: lightskyblue;
-}
-
-#shoulders {
-    background-color: lightcoral;
-}
-
 
 
 #header{
