@@ -62,7 +62,6 @@
     
       
 
-    <ons-button onclick="ons.notification.alert('Hello World!')">Click Me</ons-button>
     <ons-toolbar id="header">
         <div class="left">
             <ons-toolbar-button onclick="fn.open()">
@@ -72,25 +71,11 @@
         <div class="center">
           CRAAZZZZY PIRATE GAME </div>
         <div class="right">
-            <ons-toolbar-button icon="ion-navicon" onclick="showTemplateDialog()">Button</ons-toolbar-button>
+            <ons-toolbar-button icon="ion-navicon" onclick="showTemplateDialog()">Sign out</ons-toolbar-button>
           </div>
     </ons-toolbar>
 
     
-    <template id="dialog.html">
-        <ons-dialog id="my-dialog">
-          <div style="text-align: center; padding: 10px;">
-            <p>
-              Hello=)
-            </p>
-      
-            <p>
-              <ons-button onclick="hideDialog('my-dialog')">Close</ons-button>
-            </p>
-          </div>
-        </ons-dialog>
-      </template>
-
       <ons-page>
         <ons-tabbar swipeable position="auto" id="header">
           <ons-tab page="play.html" label="Play" icon="md-home" id="play">
@@ -113,15 +98,12 @@
                 </div>
                 <div class="center" id="">Play</div>
             </ons-toolbar>
-            <div id="playcard" onload="read('piratkort.txt')">
+            <div id="playcard" onclick="read('piratkort.txt')">
                 <h1>Aaaaaargh!</h1>
                 <p id="quotation"> fe</p>
-                <p class="cardtext"> 
+                <p class="cardtext" id="cardtext"> 
                   </p>
-                  <p class="cardtext"> En skeppsbruten pirat ligger och guppar i det stora blå och först efter ni fiskat upp denne så inser ni att ni fallit offer för den patetiska poeten. Poeten ligger på däck och mumlar ut sin kommersiella smörja ”Uti havet det blå är vi alla små och då kan närmsta tå förstå en skogsrå” 
-                    Efter många om och men så utmanar han besättningen på rimtävling på valfritt ord som du bestämmer. Första personen som misslyckas eller tvekar en ansenlig stund får ta sig en djup titt i bägaren och dricka tre klunkar. 
-                  </p>
-            </div>
+                              </div>
         </ons-page>
 
     </template>
@@ -240,10 +222,21 @@
 
 
   function read(textFile) {
+      console.log("clicked")
       var xhr=new XMLHttpRequest;
-      xhr.open('GET',textFile);
-      xhr.onload=show;
+      xhr.open('GET',textFile)
       xhr.send()
+      console.log(xhr)
+      xhr.onload = function () {
+          if (xhr.readyState === xhr.DONE) {
+              if (xhr.status === 200) {
+            console.log(xhr.responseText);
+            document.getElementById("cardtext").innerHTML =  xhr.responseText;
+
+        }
+    }
+};
+
     }
 
   function show() {
