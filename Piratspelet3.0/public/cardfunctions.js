@@ -20,6 +20,11 @@ starCountRef.on('value', function(snapshot) {
     updateStarCount(piratecard, snapshot.val());
 });
 
+function print() {
+console.log(starCountRef)
+}
+
+print()
 
 
  //Read data once
