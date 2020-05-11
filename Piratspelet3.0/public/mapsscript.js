@@ -1,8 +1,7 @@
-import MapsModel from "./ModelsAndConfig/locationFunctions.js";
-const locationfunctions = new MapsModel();
 
 
 function initMap() {
+  
     map = new google.maps.Map(document.getElementById('googlemap'), {
         center: { lat: 59.3498092, lng: 18.0684758 },
         zoom: 15,
@@ -14,7 +13,7 @@ function initMap() {
   var zoomInButton = document.getElementById('zoomInButton');
   var zoomOutButton = document.getElementById('zoomOutButton');
   var currentlocation = document.getElementById("currentLocation");
-  var requestFullscreen = document.getElementById("goFS");
+
   
   google.maps.event.addDomListener(zoomInButton, 'click', function() {
     map.setZoom(map.getZoom() + 1);
@@ -32,6 +31,7 @@ function initMap() {
   
   }
 
+
   
   var elem = document.getElementById("myDiv")
   
@@ -45,8 +45,7 @@ function initMap() {
       let timestamp = new Date().toLocaleString();
       let position = navigator.geolocation.getCurrentPosition(getPosition);
       navigator.geolocation.getCurrentPosition(showPosition);
-      locationfunctions.setLocation(position);
-      locationfunctions.addYourplaylistToDatabase(position, "test", "test", timestamp);
+      addYourplaylistToDatabase(position, "test", "test", timestamp);
       
    } else{
       alert("Sorry, browser does not support geolocation!");
@@ -103,6 +102,38 @@ function initMap() {
     });
     marker.setMap(map);
   
+  }
+
+  function getOthersPlaylistsfromdatabase(limit = 5) {
+    let locations = [];
+    return firebase.database()
+      .ref("piratspelet/locations")
+      .limitToLast(limit)
+      .once("value")
+      .then((snapshot) => {
+        snapshot = snapshot.toJSON();
+        Object.values(snapshot)
+          .reverse()
+          .forEach((doc) => {
+            locations.push({
+              Location: doc.Location,
+              Text: doc.Text,
+              User: doc.User,
+              Timestamp:doc.Timestamp,
+            });
+          });
+        return locations;
+      });
+  }
+
+  //add a playlist to firebase
+  function addYourplaylistToDatabase(location, text, user, timestamp) {
+    firebase.database().ref("piratspelet/location/'" + user).set({
+      Location: location,
+      Text: text,
+      User: user,
+      Timestamp:timestamp,
+    });
   }
   
   

@@ -1,12 +1,11 @@
 import firebaseConfig from "./mapsConfig";
-var firebase = require('firebase');
 
 
 
-export class MapsModel{
-  constructor(props) {
+
+class MapsModel {
+  constructor() {
     super();
-    this.props = props;
     this.subscribers = [];
     this.myLocation;
     this.user ="";
