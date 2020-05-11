@@ -1,5 +1,5 @@
 import React from "react";
-import firebaseConfig from "./vjues/mapsConfig";
+import firebaseConfig from "./mapsConfig";
 import firebase from "firebase";
 
 
@@ -48,7 +48,7 @@ class MapsModel extends React.Component {
   getOthersPlaylistsfromdatabase(limit = 5) {
     let locations = [];
     return this.db
-      .ref("piratspelet")
+      .ref("piratspelet-6afa4/locations")
       .limitToLast(limit)
       .once("value")
       .then((snapshot) => {
@@ -69,7 +69,7 @@ class MapsModel extends React.Component {
 
   //add a playlist to firebase
   addYourplaylistToDatabase(location, text, user, timestamp) {
-    this.db.ref("piratspelet/" + user).set({
+    this.db.ref("piratspelet-6afa4/locations" + user).set({
       Location: location,
       Text: text,
       User: user,
