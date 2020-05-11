@@ -55,13 +55,18 @@ h1 {
     background-image: url("./photos/piratecard.jpg");
 }
 #controlWrapper{
+    position: absolute;
+    bottom:0px;
     margin: 5px;
   }
   
   /* Always set the map height explicitly to define the size of the div
    * element that contains the map. */
    #googlemap{
-    height: 50%;
+       position: absolute;
+       
+    height: 100%;
+    width: 100%;
   }
 
   .locationbuttons .locationbutton{
