@@ -1,5 +1,5 @@
 function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('googlemap'), {
         center: { lat: 59.3498092, lng: 18.0684758 },
         zoom: 15,
         mapTypeId: 'satellite',
@@ -30,10 +30,6 @@ function initMap() {
     });
     
   
-  }
-  
-  function myFunction() {
-    myVar = setTimeout(showPage, 3000);
   }
   
   var elem = document.getElementById("myDiv")
