@@ -51,6 +51,15 @@ function initMap() {
       alert("Sorry, browser does not support geolocation!");
    }
   }
+
+  function getOthersLocations(){
+    let othersLocation = getOthersPlaylistsfromdatabase(limit = 5);
+    othersLocation.forEach((person) =>{
+      placeMarker(person.Location , "Minas fovvoställe");
+
+    })
+    
+  }
   
   function favoriteLocation (id){
     
@@ -70,6 +79,7 @@ function initMap() {
       placeMarker(position , "Minas fovvoställe")
     }
   }
+  
   function getPosition(position){
     position = { lat: position.coords.latitude, lng: position.coords.longitude };
     return position
