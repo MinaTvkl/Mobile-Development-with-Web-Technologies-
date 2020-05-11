@@ -1,22 +1,54 @@
 import React from "react";
-import firebaseConfig from "./mapsConfig";
+import firebaseConfig from "./vjues/mapsConfig";
 import firebase from "firebase";
 
 
 
-  function setLocation(location){
-      var location = location;
+class MapsModel extends React.Component {
+  constructor(props) {
+    super();
+    this.props = props;
+    this.subscribers = [];
+    this.myLocation ="";
+    this.user ="";
+    firebase.initializeApp(firebaseConfig);
+    this.db = firebase.database();
+  }
+
+  addObserver(callback) {
+    this.subscribers.push(callback);
+  }
+
+  removeObserver(callback) {
+    callback = this.subscribers.filter((o) => o !== callback);
+  }
+
+  notifyObservers(whatHappened) {
+    this.subscribers.forEach(function (callback) {
+      callback(whatHappened);
+    });
+  }
+
+  setLocation(location){
+      this.myLocation = location;
   }
 
   getLocation(){
-      location
+      return this.myLocation
   }
 
+  setUser(user){
+    this.user=user;
+  }
+
+  getUser(){
+    return this.user
+  }
 
   getOthersPlaylistsfromdatabase(limit = 5) {
     let locations = [];
     return this.db
-      .ref("piratspelet-6afa4/locations")
+      .ref("piratspelet")
       .limitToLast(limit)
       .once("value")
       .then((snapshot) => {
@@ -37,7 +69,7 @@ import firebase from "firebase";
 
   //add a playlist to firebase
   addYourplaylistToDatabase(location, text, user, timestamp) {
-    this.db.ref("piratspelet-6afa4/locations" + user).set({
+    this.db.ref("piratspelet/" + user).set({
       Location: location,
       Text: text,
       User: user,
