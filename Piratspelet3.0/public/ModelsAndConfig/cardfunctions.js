@@ -25,8 +25,9 @@ starCountRef.on('value', function(snapshot) {
 
  //Read data once
 
-return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-  var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-  // ...
+return firebase.database().ref('/cards/' + collectionid).once('value').then(function(snapshot) {
+  var card = (snapshot.val() && snapshot.val()) || 'Anonymous';
+  console.log(card)
+  return card;
 });
 
