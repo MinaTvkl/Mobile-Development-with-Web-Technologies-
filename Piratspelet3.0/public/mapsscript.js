@@ -1,5 +1,4 @@
 
-
 function initMap() {
   
     map = new google.maps.Map(document.getElementById('googlemap'), {
@@ -79,7 +78,7 @@ function initMap() {
       placeMarker(position , "Minas fovvoställe")
     }
   }
-  
+
   function getPosition(position){
     position = { lat: position.coords.latitude, lng: position.coords.longitude };
     return position
@@ -116,8 +115,7 @@ function initMap() {
 
   function getOthersPlaylistsfromdatabase(limit = 5) {
     let locations = [];
-    return firebase.database()
-      .ref("piratspelet/locations")
+    return db.ref("locations")
       .limitToLast(limit)
       .once("value")
       .then((snapshot) => {
@@ -138,7 +136,7 @@ function initMap() {
 
   //add a playlist to firebase
   function addYourplaylistToDatabase(location, text, user, timestamp) {
-    firebase.database().ref("piratspelet/location/'" + user).set({
+    db.ref("locations/" + user).set({
       Location: location,
       Text: text,
       User: user,
