@@ -1,15 +1,13 @@
-import React from "react";
-import firebaseConfig from "./vjues/mapsConfig";
-import firebase from "firebase";
+import firebaseConfig from "./mapsConfig";
 
 
 
-class MapsModel extends React.Component {
-  constructor(props) {
+
+class MapsModel {
+  constructor() {
     super();
-    this.props = props;
     this.subscribers = [];
-    this.myLocation ="";
+    this.myLocation;
     this.user ="";
     firebase.initializeApp(firebaseConfig);
     this.db = firebase.database();
@@ -48,7 +46,7 @@ class MapsModel extends React.Component {
   getOthersPlaylistsfromdatabase(limit = 5) {
     let locations = [];
     return this.db
-      .ref("piratspelet")
+      .ref("piratspelet/locations")
       .limitToLast(limit)
       .once("value")
       .then((snapshot) => {
@@ -69,7 +67,7 @@ class MapsModel extends React.Component {
 
   //add a playlist to firebase
   addYourplaylistToDatabase(location, text, user, timestamp) {
-    this.db.ref("piratspelet/" + user).set({
+    this.db.ref("piratspelet/location/'" + user).set({
       Location: location,
       Text: text,
       User: user,
@@ -80,25 +78,3 @@ class MapsModel extends React.Component {
 
 }
 
-//A funktion for shuffleing an array (NOT USED)
-function shuffle(a) {
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-function uniq(a) {
-  var prims = { boolean: {}, number: {}, string: {} },
-    objs = [];
-
-  return a.filter(function (item) {
-    var type = typeof item;
-    if (type in prims)
-      return prims[type].hasOwnProperty(item)
-        ? false
-        : (prims[type][item] = true);
-    else return objs.indexOf(item) >= 0 ? false : objs.push(item);
-  });
-}

@@ -1,15 +1,19 @@
+
+
 function initMap() {
+  
     map = new google.maps.Map(document.getElementById('googlemap'), {
         center: { lat: 59.3498092, lng: 18.0684758 },
         zoom: 15,
-        mapTypeId: 'satellite',
+        styles:[{"featureType":"landscape","elementType":"all","stylers":[{"hue":"#FFAD00"},{"saturation":50.2},{"lightness":-34.8},{"gamma":1}]},{"featureType":"landscape.natural.landcover","elementType":"geometry.fill","stylers":[{"color":"#cbb42e"},{"visibility":"on"}]},{"featureType":"poi","elementType":"all","stylers":[{"hue":"#FFC300"},{"saturation":54.2},{"lightness":-14.4},{"gamma":1}]},{"featureType":"road.highway","elementType":"all","stylers":[{"hue":"#FFAD00"},{"saturation":-19.8},{"lightness":-1.8},{"gamma":1}]},{"featureType":"road.arterial","elementType":"all","stylers":[{"hue":"#FFAD00"},{"saturation":72.4},{"lightness":-32.6},{"gamma":1}]},{"featureType":"road.local","elementType":"all","stylers":[{"hue":"#FFAD00"},{"saturation":74.4},{"lightness":-18},{"gamma":1}]},{"featureType":"water","elementType":"all","stylers":[{"hue":"#00FFA6"},{"saturation":-63.2},{"lightness":38},{"gamma":1}]},{"featureType":"water","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#ffe59c"}]}],
+
         disableDefaultUI: true //turns off default buttons
     });
     map.setTilt(45);
   var zoomInButton = document.getElementById('zoomInButton');
   var zoomOutButton = document.getElementById('zoomOutButton');
   var currentlocation = document.getElementById("currentLocation");
-  var requestFullscreen = document.getElementById("goFS");
+
   
   google.maps.event.addDomListener(zoomInButton, 'click', function() {
     map.setZoom(map.getZoom() + 1);
@@ -23,31 +27,29 @@ function initMap() {
   
   google.maps.event.addDomListener(currentlocation, 'click', function() {
     getLocation();
-    }); 
-  
-  google.maps.event.addDomListener(requestFullscreen,"click", function() {
-    fullscreenmap();
-    });
-    
+    });  
   
   }
+
+
   
   var elem = document.getElementById("myDiv")
   
-  function fullscreenmap(){
-    if (document.fullscreenEnabled) {
-      elem.requestFullscreen();
-      console.log("Du ska vara i fullscreen");
-      // supported
-      }
-    else{
-      alert("Sorry, browser does not support fullscreen!");
-      }
-  }
-  
+
   //kan användas för att ta sig ur en fullscreen
-  function closeFullscreen(){
-    document.exitFullscreen();
+
+
+  function postMyLocation(){
+    
+    if(navigator.geolocation){
+      let timestamp = new Date().toLocaleString();
+      let position = navigator.geolocation.getCurrentPosition(getPosition);
+      navigator.geolocation.getCurrentPosition(showPosition);
+      addYourplaylistToDatabase(position, "test", "test", timestamp);
+      
+   } else{
+      alert("Sorry, browser does not support geolocation!");
+   }
   }
   
   function favoriteLocation (id){
@@ -68,6 +70,11 @@ function initMap() {
       placeMarker(position , "Minas fovvoställe")
     }
   }
+  function getPosition(position){
+    position = { lat: position.coords.latitude, lng: position.coords.longitude };
+    return position
+  }
+
   function showPosition(position){
     position = { lat: position.coords.latitude, lng: position.coords.longitude };
     map.setCenter(position)
@@ -95,6 +102,38 @@ function initMap() {
     });
     marker.setMap(map);
   
+  }
+
+  function getOthersPlaylistsfromdatabase(limit = 5) {
+    let locations = [];
+    return firebase.database()
+      .ref("piratspelet/locations")
+      .limitToLast(limit)
+      .once("value")
+      .then((snapshot) => {
+        snapshot = snapshot.toJSON();
+        Object.values(snapshot)
+          .reverse()
+          .forEach((doc) => {
+            locations.push({
+              Location: doc.Location,
+              Text: doc.Text,
+              User: doc.User,
+              Timestamp:doc.Timestamp,
+            });
+          });
+        return locations;
+      });
+  }
+
+  //add a playlist to firebase
+  function addYourplaylistToDatabase(location, text, user, timestamp) {
+    firebase.database().ref("piratspelet/location/'" + user).set({
+      Location: location,
+      Text: text,
+      User: user,
+      Timestamp:timestamp,
+    });
   }
   
   
