@@ -4,46 +4,14 @@ import firebase from "firebase";
 
 
 
-class MapsModel extends React.Component {
-  constructor(props) {
-    super();
-    this.props = props;
-    this.subscribers = [];
-    this.myLocation ="";
-    this.user ="";
-    firebase.initializeApp(firebaseConfig);
-    this.db = firebase.database();
-  }
-
-  addObserver(callback) {
-    this.subscribers.push(callback);
-  }
-
-  removeObserver(callback) {
-    callback = this.subscribers.filter((o) => o !== callback);
-  }
-
-  notifyObservers(whatHappened) {
-    this.subscribers.forEach(function (callback) {
-      callback(whatHappened);
-    });
-  }
-
-  setLocation(location){
-      this.myLocation = location;
+  function setLocation(location){
+      var location = location;
   }
 
   getLocation(){
-      return this.myLocation
+      location
   }
 
-  setUser(user){
-    this.user=user;
-  }
-
-  getUser(){
-    return this.user
-  }
 
   getOthersPlaylistsfromdatabase(limit = 5) {
     let locations = [];
