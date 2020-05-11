@@ -59,8 +59,6 @@
     </script>
 </head>
 <body>
-    
-      
 
     <ons-toolbar id="header">
         <div class="left">
@@ -80,7 +78,7 @@
         <ons-tabbar swipeable position="auto" id="header">
           <ons-tab page="play.html" label="Play" icon="md-home" id="play">
           </ons-tab>
-          <ons-tab page="page3.html" label="Map" icon="md-settings" active-icon="md-face" id="map">
+          <ons-tab page="maps.html" label="Map" icon="md-settings" active-icon="md-face" id="map">
           </ons-tab>
         <ons-tab page="page5.html" label="Settings" icon="md-settings" active-icon="md-face" id="settings">
         </ons-tab>
@@ -108,7 +106,7 @@
 
     </template>
 
-    <template id="page3.html">
+    <template id="maps.html">
         <ons-page id="page3">
             <ons-toolbar>
                 <div class="left">
@@ -117,35 +115,57 @@
                     </ons-toolbar-button>
                 </div>
                 <div class="center">MAP</div>
-            </ons-toolbar>
-            <div class="my-header">
-                <img class="my-header-image" src="photos/photo-feet.jpg" />
-            </div>
-            <div class="my-content">
-                <h1>Feel Your Feet</h1>
-                <ul>
-                    <li>Stand on your feet.</li>
-                    <li>Experience the contact with the ground.</li>
-                    <li>Feel into the soles of the feet.</li>
-                    <li>Feel the knees.</li>
-                    <li>The hips.</li>
-                    <li>The spine.</li>
-                    <li>Shoulders.</li>
-                    <li>Neck.</li>
-                    <li>Head.</li>
-                    <li>Feel the connection between the top of the head and the feet.</li>
-                </ul>
-            </div>
+            </ons-toolbar onload = "myFunction()">
+
+              <div id="intro">
+                <h1>Welcome to our map app
+          
+                </h1>
+              
+                <div id="loader">
+          
+                </div>
+              </div>
+          
+              <div id="myDiv" style="display:none;">
+                <div id="goFS" draggable="true">
+                <button onClick="closeFullscreen()"> Open/Close Fullscreen</button></div>
+                <div id="map"></div>
+                <div id="controlWrapper">
+                  
+                  <div class ="Locationbuttons">
+                    <button class ="Locationbutton" id="currentLocation" >Din Nuvarande Plats</button>
+                    <button class ="Locationbutton" id="simon" onClick="favoriteLocation(this.id)"> Simons favoritplats</button>
+                    <button class ="Locationbutton" id="mina" onClick="favoriteLocation(this.id)"> Minas favoritplats</button>
+                    <button class ="Locationbutton" id="erik" onClick="favoriteLocation(this.id)"> Eriks Favoritplats</button>
+                  </div>
+          
+                  <div class ="zoombuttons">
+                    <button class= "zoombutton" id="zoomInButton" draggable="true">+</button>
+                    <button class= "zoombutton" id="zoomOutButton" draggable="true">-</button>
+                  </div>
+                </div>
+              </div>
+              <script>
+                var myVar;
+                
+                function myFunction() {
+                  myVar = setTimeout(showPage, 3000);
+                }
+                
+                
+                function showPage() {
+                  document.getElementById("loader").style.display = "none";
+                  document.getElementById("intro").style.display = "none";
+                  document.getElementById("myDiv").style.display = "block";
+                }
+                </script>
+          
+              <script src="mapsscript.js"></script>
+              <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxuXYlxmbsxvPR1YOyCuNUPu9cBqj3FGk&callback=initMap"
+              async defer></script>
             <ons-list>
-                <ons-list-header>Task compleation</ons-list-header>
-                <ons-list-item>
-                  <div class="center">
-                    Done with task
-                  </div>
-                  <div class="right">
-                    <ons-switch></ons-switch>
-                  </div>
-                </ons-list-item>
+                
                 
               </ons-list>
             </ons-page>
