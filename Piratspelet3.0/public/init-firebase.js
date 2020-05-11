@@ -12,6 +12,17 @@ var firebaseConfig = {
 
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
 
 
+  
+
+  var starCountRef = firebase.database().ref('cards/' + collectionid + '/action');
+  starCountRef.on('value', function(snapshot) {
+      updateStarCount(piratecard, snapshot.val());
+  });
+  
+  function print() {
+  console.log(starCountRef)
+  }
+  
+  print()

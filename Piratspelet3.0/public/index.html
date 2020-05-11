@@ -13,19 +13,22 @@
 
 
     <!-- update the version number as needed -->
-    <script defer src="/__/firebase/7.14.2/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/7.14.2/firebase-auth.js"></script>
-    <script defer src="/__/firebase/7.14.2/firebase-database.js"></script>
-    <script defer src="/__/firebase/7.14.2/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/7.14.2/firebase-storage.js"></script>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
+
+
+<script defer src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+
+
+<script defer src="./init-firebase.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-analytics.js"></script>
 
     
     <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
     <script src="cardfunctions.js"></script>
     <script src="script.js"></script>
-    <script>var firebase = require('firebase');</script>
     <script src="mapsscript.js"></script>
     <script defer src="./init-firebase.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxuXYlxmbsxvPR1YOyCuNUPu9cBqj3FGk&callback=initMap" async defer></script>  
