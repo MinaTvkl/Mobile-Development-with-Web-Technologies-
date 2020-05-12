@@ -38,20 +38,33 @@ function initMap() {
   //kan användas för att ta sig ur en fullscreen
 
   
-  function placeMarker(location, textto, user="you", colur ="blue"){
+  function placeMarker(location, textto, user="you", type="me"){
+    let dot = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
+    if(type === "other"){
+      dot =  "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
+    }
+
     
     let marker = new google.maps.Marker({
       animation: google.maps.Animation.DROP,
       position: location,
+      icon: {
+        url: dot
+      },
       map: map,
       title: user ,
       label: {
         text: textto,
-        color: colur,
+        
         fontWeight: "bold",
         fontSize: "16px"
       }
     });
+    marker.addListener('click', function() {
+      
+      map.setCenter(marker.getPosition());
+    });
+
     marker.setMap(map);
   
   }
@@ -59,7 +72,7 @@ function initMap() {
     getOthersPlaylistsfromdatabase(limit = 5).then((othersLocation)=>{
       console.log(othersLocation);
       othersLocation.forEach((person) =>{
-      placeMarker(person.Location , person.Text, person.User, "white");
+      placeMarker(person.Location , person.Text, person.User, "other");
 
     });
     });
@@ -88,6 +101,7 @@ function initMap() {
           });
         
       }).then(() => {
+        // Where you put filters
         //locationsfiltered = locations.filter((location) => { (new Date(location.Timestamp).getTime() - new Date("01:00:00")) < (new Date(new Date().toLocaleString()).getTime() - new Date("01:00:00"))})
         locationsfiltered = locations;
         return locationsfiltered});
@@ -97,7 +111,7 @@ function initMap() {
   function showPosition(position, text){
     position = { lat: position.coords.latitude, lng: position.coords.longitude };
     console.log(position);
-    placeMarker(position , "Din position");
+    placeMarker(position , "You");
     console.log(position);
     let timestamp = new Date().toLocaleString();
     var locationstr = JSON.stringify(position);
