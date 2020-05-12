@@ -1,3 +1,4 @@
+/*
 export const firebaseConfig = {
   apiKey: "AIzaSyA84Ze_Y2Yy0aoKI835N9Ss_8IthGt-53c",
   authDomain: "piratspelet-6afa4.firebaseapp.com",
@@ -10,3 +11,4 @@ export const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+*/
