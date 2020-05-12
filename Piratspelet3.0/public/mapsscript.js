@@ -40,54 +40,22 @@ function initMap() {
 
   function postMyLocation(){
     
-    if(navigator.geolocation){
+    
       let timestamp = new Date().toLocaleString();
-      let position = navigator.geolocation.getCurrentPosition(getPosition);
-      navigator.geolocation.getCurrentPosition(showPosition);
+      let position = getLocation();
+      console.log(position);
       addYourplaylistToDatabase(position, "test", "test", timestamp);
-      
-   } else{
-      alert("Sorry, browser does not support geolocation!");
-   }
+    
   }
 
   function getOthersLocations(){
     let othersLocation = getOthersPlaylistsfromdatabase(limit = 5);
+    console.log(othersLocation);
     othersLocation.forEach((person) =>{
       placeMarker(person.Location , "Minas fovvoställe");
 
     })
     
-  }
-  
-  function favoriteLocation (id){
-    
-    if (id == "erik"){
-      let position = { lat: 59.357025, lng: 18.040951 }
-      map.setCenter(position)
-      placeMarker(position , "Eriks fovvoställe")
-    }
-    else if(id == "simon"){
-      let position = { lat: 59.346371, lng: 18.061760 }
-      map.setCenter(position)
-      placeMarker(position , "Simon fovvoställe")
-    }
-    else if(id == "mina"){
-      let position = { lat: 59.317291, lng: 18.060765 };
-      map.setCenter(position); 
-      placeMarker(position , "Minas fovvoställe")
-    }
-  }
-
-  function getPosition(position){
-    position = { lat: position.coords.latitude, lng: position.coords.longitude };
-    return position
-  }
-
-  function showPosition(position){
-    position = { lat: position.coords.latitude, lng: position.coords.longitude };
-    map.setCenter(position)
-    placeMarker(position , "Din position")
   }
   
   function getLocation(){
@@ -101,6 +69,14 @@ function initMap() {
    }
   }
   
+
+  function getPosition(position){
+    position = { lat: position.coords.latitude, lng: position.coords.longitude };
+    return position
+  }
+  
+  
+  
   function placeMarker(location, text){
     
     let marker = new google.maps.Marker({
@@ -112,6 +88,7 @@ function initMap() {
     marker.setMap(map);
   
   }
+  var collID = "IwmEru0PJApbc1I3DwJS";
 
   var database = firebase.database();
 
@@ -138,7 +115,7 @@ function initMap() {
 
   //add a playlist to firebase
   function addYourplaylistToDatabase(location, text, user, timestamp) {
-    database.ref("locations/" + user).set({
+    database.ref("locations/"+ user).set({
       Location: location,
       Text: text,
       User: user,
