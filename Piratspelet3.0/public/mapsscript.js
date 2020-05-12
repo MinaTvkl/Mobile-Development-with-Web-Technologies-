@@ -37,80 +37,33 @@ function initMap() {
 
   //kan användas för att ta sig ur en fullscreen
 
-
-  function postMyLocation(){
-    
-    if(navigator.geolocation){
-      let timestamp = new Date().toLocaleString();
-      let position = navigator.geolocation.getCurrentPosition(getPosition);
-      navigator.geolocation.getCurrentPosition(showPosition);
-      addYourplaylistToDatabase(position, "test", "test", timestamp);
-      
-   } else{
-      alert("Sorry, browser does not support geolocation!");
-   }
-  }
-
-  function getOthersLocations(){
-    let othersLocation = getOthersPlaylistsfromdatabase(limit = 5);
-    othersLocation.forEach((person) =>{
-      placeMarker(person.Location , "Minas fovvoställe");
-
-    })
-    
-  }
   
-  function favoriteLocation (id){
-    
-    if (id == "erik"){
-      let position = { lat: 59.357025, lng: 18.040951 }
-      map.setCenter(position)
-      placeMarker(position , "Eriks fovvoställe")
-    }
-    else if(id == "simon"){
-      let position = { lat: 59.346371, lng: 18.061760 }
-      map.setCenter(position)
-      placeMarker(position , "Simon fovvoställe")
-    }
-    else if(id == "mina"){
-      let position = { lat: 59.317291, lng: 18.060765 };
-      map.setCenter(position); 
-      placeMarker(position , "Minas fovvoställe")
-    }
-  }
-
-  function getPosition(position){
-    position = { lat: position.coords.latitude, lng: position.coords.longitude };
-    return position
-  }
-
-  function showPosition(position){
-    position = { lat: position.coords.latitude, lng: position.coords.longitude };
-    map.setCenter(position)
-    placeMarker(position , "Din position")
-  }
-  
-  function getLocation(){
-    if(navigator.geolocation){
-      
-      navigator.geolocation.getCurrentPosition(showPosition);
-      
-      
-   } else{
-      alert("Sorry, browser does not support geolocation!");
-   }
-  }
-  
-  function placeMarker(location, text){
+  function placeMarker(location, textto, user="you", colur ="blue"){
     
     let marker = new google.maps.Marker({
       animation: google.maps.Animation.DROP,
       position: location,
       map: map,
-      title: text
+      title: user ,
+      label: {
+        text: textto,
+        color: colur,
+        fontWeight: "bold",
+        fontSize: "16px"
+      }
     });
     marker.setMap(map);
   
+  }
+  function getOthersLocations(){
+    getOthersPlaylistsfromdatabase(limit = 5).then((othersLocation)=>{
+      console.log(othersLocation);
+      othersLocation.forEach((person) =>{
+      placeMarker(person.Location , person.Text, person.User, "white");
+
+    });
+    });
+    
   }
 
   var database = firebase.database();
@@ -125,20 +78,54 @@ function initMap() {
         Object.values(snapshot)
           .reverse()
           .forEach((doc) => {
+            let location = JSON.parse(doc.Location);
             locations.push({
-              Location: doc.Location,
+              Location: location,
               Text: doc.Text,
               User: doc.User,
               Timestamp:doc.Timestamp,
             });
           });
-        return locations;
-      });
+        
+      }).then(() => {
+        //locationsfiltered = locations.filter((location) => { (new Date(location.Timestamp).getTime() - new Date("01:00:00")) < (new Date(new Date().toLocaleString()).getTime() - new Date("01:00:00"))})
+        locationsfiltered = locations;
+        return locationsfiltered});
+
   }
+
+  function showPosition(position, text){
+    position = { lat: position.coords.latitude, lng: position.coords.longitude };
+    console.log(position);
+    placeMarker(position , "Din position");
+    console.log(position);
+    let timestamp = new Date().toLocaleString();
+    var locationstr = JSON.stringify(position);
+    console.log(position);
+    addYourplaylistToDatabase(locationstr, text, "test", timestamp);
+    
+  }
+
+  function getLocation(text){
+    if(navigator.geolocation){
+      
+    navigator.geolocation.getCurrentPosition( (position) => showPosition(position, text));
+      
+      
+   } else{
+      alert("Sorry, browser does not support geolocation!");
+   }
+  }
+  
+
+  function postMyLocation(text ="no text"){
+    getLocation(text);
+
+}
 
   //add a playlist to firebase
   function addYourplaylistToDatabase(location, text, user, timestamp) {
-    database.ref("locations/" + user).set({
+    database.ref("locations/"+ user).set({
       Location: location,
       Text: text,
       User: user,
