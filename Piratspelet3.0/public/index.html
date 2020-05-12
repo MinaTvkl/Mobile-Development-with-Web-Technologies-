@@ -273,32 +273,6 @@
     </script>
 
 
-<script>
-  const quotes = [{
-    "quote": "This is just a Quote1",
-    "source": "Christopher"
-  },
-  {
-    "quote": "This is just a Quote2",
-    "source": "Martin"
-  },
-  {
-    "quote": "This is just a Quote3",
-    "source": "Dennis"
-  },
-]
-
-var quotation = document.getElementById('quotation'); // get the quotation <p>
-var source = document.getElementById('source'); // get the source <p>
-
-function randomQuote() {
-  let random = quotes[Math.floor(Math.random() * quotes.length)];
-  quotation.innerText = `"${random.quote}"`;
-  source.innerText = random.source;
-}
-
-randomQuote();
-</script>
 
 
 
