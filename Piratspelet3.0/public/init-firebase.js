@@ -16,17 +16,26 @@ var collectionid = 'vxONoHUCkFSBVEevmt34'
 
 firebase.initializeApp(firebaseConfig);
 
+var database = firebase.database();
+
+var postElement = document.getElementById("playcard") 
 
 
-  
 
-var starCountRef = firebase.database().ref('cards/' + collectionid + '/action');
+var starCountRef = firebase.database().ref('cards/');
   starCountRef.on('value', function(snapshot) {
-      updateStarCount(piratecard, snapshot.val());
+      console.log(snapshot.val())
+      updateStarCount(postElement, snapshot.val().action);
+      
+      
   });
+
+
+console.log(postElement)
   
   function print() {
-  console.log(starCountRef)
+    console.log(starCountRef)
+    console.log(starCountRef.path.pieces_)
   }
   
-  print()
+print()
