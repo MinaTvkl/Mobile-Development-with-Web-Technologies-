@@ -113,9 +113,11 @@ function initMap() {
   
   }
 
+  var database = firebase.database();
+
   function getOthersPlaylistsfromdatabase(limit = 5) {
     let locations = [];
-    return db.ref("locations")
+    return database.ref("locations")
       .limitToLast(limit)
       .once("value")
       .then((snapshot) => {
@@ -136,7 +138,7 @@ function initMap() {
 
   //add a playlist to firebase
   function addYourplaylistToDatabase(location, text, user, timestamp) {
-    db.ref("locations/" + user).set({
+    database.ref("locations/" + user).set({
       Location: location,
       Text: text,
       User: user,
