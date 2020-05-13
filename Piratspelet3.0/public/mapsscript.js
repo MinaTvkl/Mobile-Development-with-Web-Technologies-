@@ -69,7 +69,7 @@ function placeMarker(location, textto, user="You", type="me", timestamp="Now"){
 function getOthersLocations(){
   var user = firebase.auth().currentUser;
   if(user !== null){
-    getOthersPlaylistsfromdatabase(limit = 5, user.uid).then((othersLocation)=>{
+    getOthersPlaylistsfromdatabase(limit = 100, user.uid).then((othersLocation)=>{
       othersLocation.forEach((person) =>{
       placeMarker(person.Location , person.Text, person.Name, "other", person.Timestamp);
   
