@@ -11,7 +11,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta charset="utf-8" />
     <title>Pirate Game, ARRRGH</title>
-
+<!--Inlog firebase-->
+<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
 
     <!-- update the version number as needed -->
 <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -27,6 +29,7 @@
 <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-analytics.js"></script>
 
 <!-- initialize the SDK after all desired features are loaded -->
+<script defer src="signinscript.js"></script>
 <script defer src="./cardfunctions.js"></script>
 <script defer src="./addfunctions.js"></script>
 <script src="script.js"></script>
@@ -105,6 +108,9 @@
     
       <ons-page>
         <ons-tabbar swipeable position="auto" id="header">
+          <ons-tab page="sign-in.html" label="Sign in" icon="md-home" id="sign-in">
+
+          </ons-tab>
           <ons-tab page="play.html" label="Play" icon="md-home" id="play">
           </ons-tab>
           <ons-tab page="maps.html" label="Map" icon="md-settings" active-icon="md-face" id="map">
@@ -113,6 +119,26 @@
         </ons-tab>
         </ons-tabbar>
       </ons-page>
+
+      <template id="sign-in.html">
+        <ons-page id="sign-in">
+          <ons-toolbar>
+            <div class="left">
+                <ons-toolbar-button onclick="fn.open()">
+                  <ons-icon icon="md-menu"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+            <div class="center" >Sign in</div>
+        </ons-toolbar >
+
+        <div classname="signInDivider">
+          <div id="firebaseui-auth-container"></div>
+          <div id="loader_signin">Loading... or you are already siged in!</div>
+          
+        </div>
+        </ons-page>
+
+    </template>
 
       
       <template id="play.html">
