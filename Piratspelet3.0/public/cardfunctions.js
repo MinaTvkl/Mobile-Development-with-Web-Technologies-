@@ -1,5 +1,4 @@
 
-
 var database = firebase.database();
 
 var postElement = document.getElementById("playcard")
@@ -45,10 +44,5 @@ function writeNewPost() {
 
 
   
-  function print() {
-    console.log(starCountRef)
-    console.log(starCountRef.path.pieces_)
-  }
-  
-print()
+
 
