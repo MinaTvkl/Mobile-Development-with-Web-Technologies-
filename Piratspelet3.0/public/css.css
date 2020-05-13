@@ -93,9 +93,16 @@ h1 {
     background-image: url("./photos/piratecard.jpg");
 }
 #controlWrapper{
+
     position: absolute;
-    
-    margin: 5px;
+    background-color: rgba(249, 247, 241, 0.557);
+    width: 300px;
+    top:10px;
+    left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%);
+   
+    box-shadow: 10px 10px 10px 10px rgba(249, 247, 241, 0.557);
   }
   
   /* Always set the map height explicitly to define the size of the div
