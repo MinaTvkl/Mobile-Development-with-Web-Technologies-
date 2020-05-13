@@ -1,0 +1,39 @@
+[debug] [2020-05-05T14:02:24.821Z] ----------------------------------------------------------------------
+[debug] [2020-05-05T14:02:24.825Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\minis\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2020-05-05T14:02:24.825Z] CLI Version:   8.0.3
+[debug] [2020-05-05T14:02:24.825Z] Platform:      win32
+[debug] [2020-05-05T14:02:24.825Z] Node Version:  v13.12.0
+[debug] [2020-05-05T14:02:24.827Z] Time:          Tue May 05 2020 16:02:24 GMT+0200 (Central European Summer Time)
+[debug] [2020-05-05T14:02:24.827Z] ----------------------------------------------------------------------
+[debug] [2020-05-05T14:02:24.827Z] 
+[debug] [2020-05-05T14:02:24.843Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-05-05T14:02:24.843Z] > authorizing via signed-in user
+[debug] [2020-05-05T14:02:24.844Z] [iam] checking project friendlychat-c916d for permissions ["firebase.projects.get"]
+[debug] [2020-05-05T14:02:24.846Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/friendlychat-c916d:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2020-05-05T14:02:25.774Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 05 May 2020 14:02:27 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=848","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-05-05T14:02:25.783Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/friendlychat-c916d  
+ 
+[debug] [2020-05-05T14:02:26.014Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 05 May 2020 14:02:27 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Serving from 'C:\Users\minis\Documents\Mobile-Development-with-Web-Technologies-\Piratspelet2.0\pirategame'...
+[info] 
+[debug] [2020-05-05T14:02:26.024Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/friendlychat-c916d/webApps/-/config  
+ 
+[debug] [2020-05-05T14:02:27.208Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 05 May 2020 14:02:28 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+[warn] !  Your requested "node" version "8" doesn't match your global version "13"
+[info] +  functions: functions emulator started at http://localhost:5001
+[info] i  functions: Watching "C:\Users\minis\Documents\Mobile-Development-with-Web-Technologies-\Piratspelet2.0\pirategame\functions" for Cloud Functions...
+[debug] [2020-05-05T14:02:28.169Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-05-05T14:02:28.170Z] [worker-pool] Adding worker with key ~diagnostic~, total=1 
+[debug] [2020-05-05T14:02:28.171Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-05-05T14:02:28.177Z] [worker-~diagnostic~-62feba86-c2c8-491f-b905-aa0b60356c18]: Assigning socketPath: \\?\pipe\C:\Users\minis\Documents\Mobile-Development-with-Web-Technologies-\Piratspelet2.0\pirategame\functions\7928 
+[debug] [2020-05-05T14:02:28.179Z] [worker-~diagnostic~-62feba86-c2c8-491f-b905-aa0b60356c18]: BUSY 
+[debug] [2020-05-05T14:02:28.982Z] [runtime-status] [7928] Functions runtime initialized. {"cwd":"C:\\Users\\minis\\Documents\\Mobile-Development-with-Web-Technologies-\\Piratspelet2.0\\pirategame\\functions","node_version":"13.12.0"} 
+[debug] [2020-05-05T14:02:28.988Z] [runtime-status] [7928] Disabled runtime features: undefined 
+[warn] !  The Cloud Functions emulator requires the module "firebase-admin" to be installed. This package is in your package.json, but it's not available. You probably need to run "npm install" in your functions directory.
+[info] i  functions: Your functions could not be parsed due to an issue with your node_modules (see above)
+[debug] [2020-05-05T14:02:29.025Z] [worker-~diagnostic~-62feba86-c2c8-491f-b905-aa0b60356c18]: exited 
+[debug] [2020-05-05T14:02:29.026Z] [worker-~diagnostic~-62feba86-c2c8-491f-b905-aa0b60356c18]: FINISHED 

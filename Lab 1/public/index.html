@@ -1,0 +1,58 @@
+﻿﻿﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="apple-touch-icon" href="./Logo.png" size="128x128">
+  </head>
+  <body onload = "myFunction()">
+
+    <div id="intro">
+      
+    
+      <div id="loader">
+
+      </div>
+    </div>
+
+    <div id="myDiv" style="display:none;">
+      <div id="goFS" draggable="true">
+      <button onClick="closeFullscreen()"> Open/Close Fullscreen</button></div>
+      <div id="map"></div>
+      <div id="controlWrapper">
+        
+        <div class ="Locationbuttons">
+          <button class ="Locationbutton" id="currentLocation" >Din Nuvarande Plats</button>
+          <button class ="Locationbutton" id="simon" onClick="favoriteLocation(this.id)"> Simons favoritplats</button>
+          <button class ="Locationbutton" id="mina" onClick="favoriteLocation(this.id)"> Minas favoritplats</button>
+          <button class ="Locationbutton" id="erik" onClick="favoriteLocation(this.id)"> Eriks Favoritplats</button>
+        </div>
+
+        <div class ="zoombuttons">
+          <button class= "zoombutton" id="zoomInButton" draggable="true">+</button>
+          <button class= "zoombutton" id="zoomOutButton" draggable="true">-</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      var myVar;
+      
+      function myFunction() {
+        myVar = setTimeout(showPage, 3000);
+      }
+      
+      
+      function showPage() {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("intro").style.display = "none";
+        document.getElementById("myDiv").style.display = "block";
+      }
+      </script>
+
+    <script src="script.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxuXYlxmbsxvPR1YOyCuNUPu9cBqj3FGk&callback=initMap"
+    async defer></script>
+  </body>
+</html>

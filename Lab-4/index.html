@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Lab 4 Pointer chat</title>
+
+        <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.21.7.js">
+        </script>
+        
+        <link rel="stylesheet" href="index.css" />
+         <!-- Bootstrap css -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+
+    </head>
+    <body>
+      <script src ="Script.js"></script>
+      <h1>Lab 4 Pointer chat</h1>
+      <button type="button" id="ok-button" onclick="givePermission();"
+      >Enable device orientation</button>
+      </div>
+      <div class="compass">
+        <h4>Your direction<span id="badge-angle" > Unkown °</span></h4>
+      </div>
+      <h4 id="direction-header">Channel</h4>
+      <div id="chat-container"></div>
+      <input type="text" id="chat-input" placeholder="  Your message.."></input>
+      <button class="btn btn-primary btn-sm" onclick="sendInput()">Send</button>
+    </body>
+
+
+</html>
