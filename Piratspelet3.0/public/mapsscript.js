@@ -10,7 +10,7 @@ function initMap() {
   map.setTilt(45);
 var zoomInButton = document.getElementById('zoomInButton');
 var zoomOutButton = document.getElementById('zoomOutButton');
-var currentlocation = document.getElementById("currentLocation");
+
 
 
 google.maps.event.addDomListener(zoomInButton, 'click', function() {
@@ -23,9 +23,7 @@ google.maps.event.addDomListener(zoomOutButton, 'click', function() {
   map.setZoom(map.getZoom() - 1);
 });
 
-google.maps.event.addDomListener(currentlocation, 'click', function() {
-  getLocation();
-  });  
+ 
 
 }
 
@@ -54,7 +52,7 @@ function placeMarker(location, textto, user="You", type="me", timestamp="Now"){
     map: map,
     title: user ,
     label: {
-      text: user + " - Say: " + textto + " - And was here at: "+ timestamp,
+      text: user + " - Berättar: " + textto + " - Och satt på denna position: "+ timestamp,
       
       
       fontSize: "16px"
@@ -72,7 +70,6 @@ function getOthersLocations(){
   var user = firebase.auth().currentUser;
   if(user !== null){
     getOthersPlaylistsfromdatabase(limit = 5, user.uid).then((othersLocation)=>{
-      console.log(othersLocation);
       othersLocation.forEach((person) =>{
       placeMarker(person.Location , person.Text, person.Name, "other", person.Timestamp);
   
@@ -125,12 +122,10 @@ function getOthersPlaylistsfromdatabase(limit = 5, currentUserUid) {
 function showPosition(position, text, name, email, uid){
   
   position = { lat: position.coords.latitude, lng: position.coords.longitude };
-  console.log(position);
-  placeMarker(position , text);
-  console.log(position);
   let timestamp = new Date().toLocaleString();
   var locationstr = JSON.stringify(position);
-  console.log(position);
+  placeMarker(position , text, "Du", "me", timestamp);
+  
   addYourLocationToDatabase(locationstr, text, name, email, uid, timestamp);
   
 }
@@ -151,7 +146,6 @@ function postMyLocation(){
   
   var text = "test";
   text = document.getElementById("messageForLocation").value;
-  console.log(text);
   var user = firebase.auth().currentUser;
   var name, email, photoUrl, uid, emailVerified;
 
