@@ -239,10 +239,10 @@
         </ons-toolbar>
         <div class="chat-content">
           <!-- create a form to send message -->
-          <form onsubmit="return sendMessage();">
-            <input id="message" placeholder="Enter message" autocomplete="on">
+          <form id="chat-form" onsubmit="return sendMessage();">
+            <input id="message" placeholder="Skriv här..." autocomplete="on">
   
-            <input type="submit">
+            <input value="Skicka" type="submit">
           </form>
           <!-- create a list -->
           <ul id="messages"></ul>
