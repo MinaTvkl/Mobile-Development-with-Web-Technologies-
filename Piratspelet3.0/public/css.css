@@ -47,18 +47,17 @@ h3 {
 }
 
 
-#playcard {
-    text-align: center;
-    background-color: black;
-    background-image: url("./photos/piratecard.jpg");
-    background-size: cover;
-    height: 100%;
-    border-radius: 18px;
-    border: 5px solid;
-    height: 97%;
-    top: 40px;
-
+#playcard, .add-content {
+  padding-top: 7px;
+  text-align: center;
+  background-color: black;
+  background-image: url(./photos/pirate-map.jpg);
+  background-size: cover;
+  top: 30px;
+  height: -webkit-fill-available;
 }
+
+
 
 
 #header{
@@ -112,6 +111,9 @@ h1 {
     position: absolute;
     top:10px;
     left:20px;
+    background-color: rgba(0, 0, 0, 0.685);
+    padding: 10px;
+    color: rgb(255, 243, 223);
     
     
   }
@@ -122,7 +124,7 @@ h1 {
     display: inline-block;
     font-size: 16px;
     cursor: pointer;
-    background-color: white; /* Green */
+    background-color: (245, 245, 220, 0.801); /* Green */
     border: 1px solid black;
     color: black;
     padding: 15px 32px;
@@ -131,7 +133,7 @@ h1 {
 
   }
    .locationbutton:hover{
-    background-color: gray;
+    background-color: rgba(129, 96, 35, 0.822);
   }
   
   .zoombuttons{
@@ -140,23 +142,22 @@ h1 {
     left:50%;
   }
    .zoombutton{
-    padding-left: 10px;
     text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+    display: -webkit-inline-box;
+    font-size: 20px;
+    font-weight: bolder;
     cursor: pointer;
-    background-color: white; /* Green */
+    background-color: rgba(245, 245, 220, 0.801);
     border: 1px solid black;
     color: black;
-    padding: 15px 32px;
+    padding: 5px 17px;
     text-align: center;
-    padding-bottom: 10px;
+}
     
     
-  }
   
    .zoombutton:hover {
-    background-color: gray;
+    background-color: rgba(129, 96, 35, 0.822);
   }
   
   .goFS{
@@ -296,3 +297,32 @@ h1 {
       text-align: center;
     padding-top: 25px;
     }
+
+
+ .minas-button, .Locationbutton, #add-button {
+      color: black;
+      /* box-shadow: 0px 1px 0px 0px #1c1b18; */
+      background: linear-gradient(to bottom, rgb(78, 183, 209) 5%, rgb(115, 186, 209) 100%);
+      background-color: rgb(78, 183, 209);
+      border-radius: 5px;
+      border: 1px solid #333029;
+      display: inline-block;
+      cursor: pointer;
+      font-family: Arial;
+      font-size: 17px;
+      font-weight: bold;
+      padding: 3px 12px;
+      text-decoration: none;
+  }
+.minas-button:hover, #add-button:hover {
+    background:linear-gradient(to bottom, moccasin 5%, #eae0c2 100%);
+    background-color:#ccc2a6;
+  }
+.minas-button:active, #add-button:active {
+    position:relative;
+    top:1px;
+  }
+  
+#add-form{
+  margin: 30px;
+}

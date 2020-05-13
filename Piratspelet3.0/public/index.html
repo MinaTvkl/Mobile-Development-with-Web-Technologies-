@@ -120,15 +120,15 @@
   
       <ons-page>
         <ons-tabbar swipeable position="auto" id="header">
-          <ons-tab page="sign-in.html" label="Logga in" icon="md-home" id="sign-in">
+          <ons-tab page="sign-in.html" label="Logga in" icon="md-account" id="sign-in">
           </ons-tab>
-          <ons-tab page="play.html" label="Spela" icon="md-home" id="play">
+          <ons-tab page="play.html" label="Spela" icon="md-gamepad" id="play">
           </ons-tab>
-          <ons-tab page="maps.html" label="Karta" icon="md-settings" active-icon="md-face" id="map">
+          <ons-tab page="maps.html" label="Karta" icon="md-google-maps" id="map">
           </ons-tab>
-        <ons-tab page="page5.html" label="Bidra" icon="md-settings" active-icon="md-face" id="settings">
+        <ons-tab page="page5.html" label="Kort" icon="md-plus" id="settings">
         </ons-tab>
-        <ons-tab page="chat.html" label="Flaskpost" icon="md-settings" active-icon="md-face" id="chat">
+        <ons-tab page="chat.html" label="Flaskpost" icon="md-email" id="chat">
         </ons-tab>
         </ons-tabbar>
       </ons-page>
@@ -152,9 +152,13 @@
       <template id="play.html">
         <ons-page id="playcard">
             <div class="playcard" id="playcard" onclick="getcard()" onload="getcard()">
+              
                 <h1>Aaaaaargh!</h1>
-                <h3>Klicka på kartan för att se nästa kort</h3>
+                <div id="card-content">
+                <h3>Klicka för att se nästa kort</h3>
                 <p class="cardtext" id="cardtext" data-placeholder="Insert text here"> </p>
+              </div>
+              </div>
             </div>
             
         </ons-page>
@@ -185,14 +189,14 @@
             <div id="myDiv" style="display:none;">
               <div id="googlemap"></div>
               <div id="controlWrapper">
-                <div class ="Locationbuttons">
+                <div class ="locationbuttons">
                  
                   <form onsubmit="return postMyLocation();" style="padding-bottom: 10px;">
-                    <h>Dela din position</h>
-                    <input id="messageForLocation" placeholder="Beskriv vart du är" autocomplete="on">
-                    <input type="submit"></form>
+                    <h>Dela din position:</h>
+                    <input id="messageForLocation" placeholder="Beskriv var du är" autocomplete="on">
+                    <input value="Skicka" class="minas-button" type="submit"></form>
                   </form>
-                  <button class ="Locationbutton" id="getOthersLocation" onClick="getOthersLocations()">Visa vart andra sitter</button>
+                  <button class ="Locationbutton" id="getOthersLocation" onClick="getOthersLocations()">Visa var andra sitter</button>
                 </div>
               </div>
         
@@ -217,14 +221,13 @@
                 </div>
                 <div class="center">Settings</div>
             </ons-toolbar>
-            <div class="my-content">
+            <div class="add-content">
                 <h1>Skepp ohoj, lägg till ett kort</h1>
-                <form>
+                <form id="add-form">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Fyll i ditt kort här</label>
-                    <textarea class="form-control" id="cardinput" rows="3"></textarea>
+                    <textarea class="form-control" id="cardinput" placeholder="Fyll i ditt kort här" rows="3"></textarea>
                   </div>
-                  <button type="reset" class="btn btn-success" onclick="writeNewPost()">Lägg till kort</button>
+                  <button type="reset" id="add-button" class="btn btn-success" onclick="writeNewPost()">Lägg till kort</button>
                 </form>
             </div>
             <ons-list>
@@ -242,7 +245,7 @@
           <form id="chat-form" onsubmit="return sendMessage();">
             <input id="message" placeholder="Skriv här..." autocomplete="on">
   
-            <input value="Skicka" type="submit">
+            <input class="minas-button" value="Skicka" type="submit">
           </form>
           <!-- create a list -->
           <ul id="messages"></ul>
