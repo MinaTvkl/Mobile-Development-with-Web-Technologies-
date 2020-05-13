@@ -76,6 +76,7 @@ li{
 }
 
 h1 { 
+    color: black;
     font-size: 40px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
@@ -92,9 +93,16 @@ h1 {
     background-image: url("./photos/piratecard.jpg");
 }
 #controlWrapper{
+
     position: absolute;
-    
-    margin: 5px;
+    background-color: rgba(249, 247, 241, 0.557);
+    width: 300px;
+    top:10px;
+    left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%);
+   
+    box-shadow: 0 10px 10px 0 rgba(249, 247, 241, 0.557);
   }
   
   /* Always set the map height explicitly to define the size of the div
@@ -139,7 +147,10 @@ h1 {
   .zoombuttons{
     position: absolute;
     bottom: 10px;
-    left:50%;
+    
+    left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%);
   }
    .zoombutton{
     text-decoration: none;
