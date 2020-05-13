@@ -125,43 +125,43 @@
     </template>
 
     <template id="maps.html" >
-        <ons-page id="page3">
-            <ons-toolbar>
-                <div class="left">
-                    <ons-toolbar-button onclick="fn.open()">
-                      <ons-icon icon="md-menu"></ons-icon>
-                    </ons-toolbar-button>
-                </div>
-                <div class="center" >MAP</div>
-            </ons-toolbar >
-            <div classname="mapdivider">
-              <div id="intro" >
-                <h1>Welcome to our map app</h1>
-                <div id="loader"></div>
+      <ons-page id="page3">
+          <ons-toolbar>
+              <div class="left">
+                  <ons-toolbar-button onclick="fn.open()">
+                    <ons-icon icon="md-menu"></ons-icon>
+                  </ons-toolbar-button>
               </div>
-              <div id="myDiv" style="display:none;">
-                
-                
-                <div id="googlemap">
+              <div class="center" >MAP</div>
+          </ons-toolbar >
+          <div classname="mapdivider">
+            <div id="intro" >
+              <h1>Welcome to our map app</h1>
+              <div id="loader"></div>
+            </div>
+            <div id="myDiv" style="display:none;">
+              
+              
+              <div id="googlemap">
 
+              </div>
+
+              <div id="controlWrapper">
+                <div class ="Locationbuttons">
+                  <button class ="Locationbutton" id="postLocation" onClick="postMyLocation()">Post your Location</button>
+                  <button class ="Locationbutton" id="getOthersLocation" onClick="getOthersLocations()">Get others Locations</button>
+                  
                 </div>
-
-                <div id="controlWrapper">
-                  <div class ="Locationbuttons">
-                    <button class ="Locationbutton" id="postLocation" onClick="postMyLocation()">Post your Location</button>
-                    <button class ="Locationbutton" id="getOthersLocation" onClick="getOthersLocations()">Get others Locations</button>
-                    
-                  </div>
-          
-                  <div class ="zoombuttons">
-                    <button class= "zoombutton" id="zoomInButton" >+</button>
-                    <button class= "zoombutton" id="zoomOutButton" >-</button>
-                  </div>
+        
+                <div class ="zoombuttons">
+                  <button class= "zoombutton" id="zoomInButton" >+</button>
+                  <button class= "zoombutton" id="zoomOutButton" >-</button>
                 </div>
               </div>
             </div>
-        </ons-page>
-    </template>
+          </div>
+      </ons-page>
+  </template>
 
     <template id="page5.html">
         <ons-page id="page5">
