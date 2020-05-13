@@ -31,13 +31,14 @@ google.maps.event.addDomListener(currentlocation, 'click', function() {
 
 
 
+
 var elem = document.getElementById("myDiv")
 
 
 //kan användas för att ta sig ur en fullscreen
 
 
-function placeMarker(location, textto, user="you", type="me"){
+function placeMarker(location, textto, user="you", type="me", timestamp="Now"){
   let dot = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
   if(type === "other"){
     dot =  "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
@@ -53,7 +54,7 @@ function placeMarker(location, textto, user="you", type="me"){
     map: map,
     title: user ,
     label: {
-      text: textto,
+      text: user + " Say: " + textto + " And was here at: "+ timestamp,
       
       fontWeight: "bold",
       fontSize: "16px"
@@ -68,19 +69,28 @@ function placeMarker(location, textto, user="you", type="me"){
 
 }
 function getOthersLocations(){
-  getOthersPlaylistsfromdatabase(limit = 5).then((othersLocation)=>{
-    console.log(othersLocation);
-    othersLocation.forEach((person) =>{
-    placeMarker(person.Location , person.Text, person.User, "other");
+  var user = firebase.auth().currentUser;
+  if(user !== null){
+    getOthersPlaylistsfromdatabase(limit = 5, user.uid).then((othersLocation)=>{
+      console.log(othersLocation);
+      othersLocation.forEach((person) =>{
+      placeMarker(person.Location , person.Text, person.Name, "other", person.Timestamp);
+  
+    });
+    });
 
-  });
-  });
+  }else{
+    alert("You need to log in if you want to show others location!");
+
+  }
+
+  
   
 }
 
 var database = firebase.database();
 
-function getOthersPlaylistsfromdatabase(limit = 5) {
+function getOthersPlaylistsfromdatabase(limit = 5, currentUserUid) {
   let locations = [];
   return database.ref("locations")
     .limitToLast(limit)
@@ -91,15 +101,19 @@ function getOthersPlaylistsfromdatabase(limit = 5) {
         .reverse()
         .forEach((doc) => {
           let location = JSON.parse(doc.Location);
+          if(doc.Uid!== currentUserUid)
           locations.push({
             Location: location,
             Text: doc.Text,
             User: doc.User,
+            Name: doc.Name,
+            Uid: doc.Uid,
             Timestamp:doc.Timestamp,
           });
         });
       
     }).then(() => {
+
       // Where you put filters
       //locationsfiltered = locations.filter((location) => { (new Date(location.Timestamp).getTime() - new Date("01:00:00")) < (new Date(new Date().toLocaleString()).getTime() - new Date("01:00:00"))})
       locationsfiltered = locations;
@@ -107,7 +121,8 @@ function getOthersPlaylistsfromdatabase(limit = 5) {
 
 }
 
-function showPosition(position, text){
+function showPosition(position, text, name, email, uid){
+  
   position = { lat: position.coords.latitude, lng: position.coords.longitude };
   console.log(position);
   placeMarker(position , "You");
@@ -115,14 +130,14 @@ function showPosition(position, text){
   let timestamp = new Date().toLocaleString();
   var locationstr = JSON.stringify(position);
   console.log(position);
-  addYourplaylistToDatabase(locationstr, text, "test", timestamp);
+  addYourLocationToDatabase(locationstr, text, name, email, uid, timestamp);
   
 }
 
-function getLocation(text){
+function getLocation(text, name, email, uid){
   if(navigator.geolocation){
     
-  navigator.geolocation.getCurrentPosition( (position) => showPosition(position, text));
+  navigator.geolocation.getCurrentPosition( (position) => showPosition(position, text, name, email, uid));
     
     
  } else{
@@ -132,16 +147,30 @@ function getLocation(text){
 
 
 function postMyLocation(text ="no text"){
-  getLocation(text);
+  var user = firebase.auth().currentUser;
+  var name, email, photoUrl, uid, emailVerified;
 
+if (user != null) {
+  name = user.displayName;
+  email = user.email;
+  photoUrl = user.photoURL;
+  emailVerified = user.emailVerified;
+  uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
+                   // this value to authenticate with your backend server, i                 // you have one. Use User.getToken() instead.
+  getLocation(text, name, email, uid);
+}else {
+  alert("You need to log in if you want to share your location");
+}
 }
 
-//add a playlist to firebase
-function addYourplaylistToDatabase(location, text, user, timestamp) {
-  database.ref("locations/"+ user).set({
+
+function addYourLocationToDatabase(location, text, user, name, uid, timestamp) {
+  database.ref("locations/"+ uid).set({
     Location: location,
     Text: text,
     User: user,
+    Name: name,
+    Uid: uid,
     Timestamp:timestamp,
   });
 }

@@ -2,6 +2,7 @@
 <html>
 
 <head>
+<<<<<<< HEAD
   <meta charset="utf-8">
   <link type="text/css" rel="stylesheet" href="css.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -63,6 +64,56 @@
           .then(function (dialog) {
             dialog.show();
           });
+=======
+    <meta charset="utf-8">
+    <link type="text/css" rel="stylesheet" href="css.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset="utf-8" />
+    <title>Pirate Game, ARRRGH</title>
+<!--Inlog firebase-->
+<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+
+    <!-- update the version number as needed -->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
+
+
+<script defer src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+
+
+<script defer src="./init-firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-analytics.js"></script>
+
+<!-- initialize the SDK after all desired features are loaded -->
+<script defer src="signinscript.js"></script>
+<script defer src="./cardfunctions.js"></script>
+<script defer src="./addfunctions.js"></script>
+<script src="script.js"></script>
+<script src="mapsscript.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxuXYlxmbsxvPR1YOyCuNUPu9cBqj3FGk&callback=initMap" async defer></script>  
+<script>
+    
+      var myVar;
+      
+      function loadThemap() {
+        myVar = setTimeout(showPage, 3000);
+      }
+      
+      
+      function showPage() {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("intro").style.display = "none";
+        document.getElementById("myDiv").style.display = "block";
+        initMap();
+>>>>>>> f5f2a6f91a030a2ec57197a3663ad2dde617d305
       }
     };
 
@@ -158,6 +209,7 @@
             <ons-icon icon="md-menu"></ons-icon>
           </ons-toolbar-button>
         </div>
+<<<<<<< HEAD
         <div class="center">MAP</div>
       </ons-toolbar>
       <div classname="mapdivider">
@@ -178,6 +230,75 @@
               <button class="Locationbutton" id="getOthersLocation" onClick="getOthersLocations()">Get others
                 Locations</button>
 
+=======
+        <div class="center">
+          PIRATSPELET </div>
+        <div class="right">
+            <ons-toolbar-button icon="ion-navicon" onclick="firebase.auth().signOut()">Sign out</ons-toolbar-button>
+          </div>
+    </ons-toolbar>
+
+    
+      <ons-page>
+        <ons-tabbar swipeable position="auto" id="header">
+          <ons-tab page="sign-in.html" label="Sign in" icon="md-home" id="sign-in">
+
+          </ons-tab>
+          <ons-tab page="play.html" label="Play" icon="md-home" id="play">
+          </ons-tab>
+          <ons-tab page="maps.html" label="Map" icon="md-settings" active-icon="md-face" id="map">
+          </ons-tab>
+        <ons-tab page="page5.html" label="Settings" icon="md-settings" active-icon="md-face" id="settings">
+        </ons-tab>
+        </ons-tabbar>
+      </ons-page>
+
+      <template id="sign-in.html">
+        <ons-page id="sign-in">
+          <ons-toolbar>
+            <div class="left">
+                <ons-toolbar-button onclick="fn.open()">
+                  <ons-icon icon="md-menu"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+            <div class="center" >Sign in</div>
+        </ons-toolbar >
+
+        <div classname="signInDivider">
+          <div id="firebaseui-auth-container"></div>
+          <div id="loader_signin">Loading... or you are already siged in!</div>
+          
+        </div>
+        </ons-page>
+
+    </template>
+
+      
+      <template id="play.html">
+        <ons-page id="playcard">
+            <div class="playcard" id="playcard" onclick="getcard()" onload="read()">
+                <h1>Aaaaaargh!</h1>
+                <p class="cardtext" id="cardtext"> </p>
+            </div>
+        </ons-page>
+
+    </template>
+
+    <template id="maps.html" >
+      <ons-page id="page3">
+          <ons-toolbar>
+              <div class="left">
+                  <ons-toolbar-button onclick="fn.open()">
+                    <ons-icon icon="md-menu"></ons-icon>
+                  </ons-toolbar-button>
+              </div>
+              <div class="center" >MAP</div>
+          </ons-toolbar >
+          <div classname="mapdivider">
+            <div id="intro" >
+              <h1>Welcome to our map app</h1>
+              <div id="loader"></div>
+>>>>>>> f5f2a6f91a030a2ec57197a3663ad2dde617d305
             </div>
 
             <div class="zoombuttons">
@@ -190,6 +311,7 @@
     </ons-page>
   </template>
 
+<<<<<<< HEAD
   <template id="page5.html">
     <ons-page id="page5">
       <ons-toolbar>
@@ -294,6 +416,52 @@
     firebase.database().ref("messages").on("child_removed", function (snapshot) {
       // remove message node
       document.getElementById("message-" + snapshot.key).innerHTML = "This message has been removed";
+=======
+    <template id="page5.html">
+        <ons-page id="page5">
+            <ons-toolbar>
+                <div class="left">
+                    <ons-toolbar-button onclick="fn.open()">
+                      <ons-icon icon="md-menu"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+                <div class="center">Settings</div>
+            </ons-toolbar>
+            <div class="my-content">
+                <h1>Förverkliga dina egna regler</h1>
+                <form>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <textarea class="form-control" id="cardinput" rows="3"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary0" onclick="newcard()">Submit</button>
+                </form>
+            </div>
+            <ons-list>
+        </ons-page>
+    </template>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+        try {
+          let app = firebase.app();
+          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+        } catch (e) {
+          console.error(e);
+          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+        }
+>>>>>>> f5f2a6f91a030a2ec57197a3663ad2dde617d305
     });
   </script>
 
