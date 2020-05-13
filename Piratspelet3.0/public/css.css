@@ -144,7 +144,10 @@ h1 {
   .zoombuttons{
     position: absolute;
     bottom: 10px;
-    left:50%;
+    
+    left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%);
   }
    .zoombutton{
     padding-left: 10px;
