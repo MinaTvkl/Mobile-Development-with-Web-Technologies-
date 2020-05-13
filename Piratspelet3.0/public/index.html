@@ -270,10 +270,10 @@
         try {
           let app = firebase.app();
           let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+          
         } catch (e) {
           console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+          
         }
     });
 
@@ -281,22 +281,6 @@
 
     </script>
 
-<script>
-
-
-function writeUserData() {
-  var starCountRef = firebase.database().ref('cards/');
-    starCountRef.on('value', function(snapshot) {
-      var length = snapshot.val().length
-      console.log(length)
-      firebase.database().ref('cards/').set({
-      length: "hej"
-    });
-  });
-}
-
-
-</script>
     
 </body>
   

@@ -34,7 +34,7 @@
     // show delete button if message is sent by me
     if (snapshot.val().sender == user.displayName) {
       html += "<button data-id='" + snapshot.key + "' onclick='deleteMessage(this);'>";
-      html += "Ta bort";
+      html += "X";
       html += "</button>";
     }
     html += snapshot.val().sender + ": " + snapshot.val().message;
