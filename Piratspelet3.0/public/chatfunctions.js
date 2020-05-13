@@ -24,6 +24,7 @@
   
   // listen for incoming messages
   firebase.database().ref("messages").on("child_added", function (snapshot) {
+      console.log(snapshot);
     var html = "";
     // give each message a unique ID
     let user = firebase.auth().currentUser;
@@ -39,8 +40,10 @@
     }
     html += snapshot.val().sender + ": " + snapshot.val().message;
     html += "</li>";
+    
+    document.getElementById('messages').innerHTML = html + document.getElementById('messages').innerHTML;
 
-    document.getElementById("messages").innerHTML += html;
+    
   });
 
 
