@@ -1,4 +1,3 @@
-Firebase.initializeApp(firebaseConfig);
 
 var database = firebase.database();
 
@@ -45,10 +44,5 @@ function writeNewPost() {
 
 
   
-  function print() {
-    console.log(starCountRef)
-    console.log(starCountRef.path.pieces_)
-  }
-  
-print()
+
 
