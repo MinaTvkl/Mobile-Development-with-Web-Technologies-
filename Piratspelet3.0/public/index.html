@@ -35,6 +35,9 @@
 <script defer src="./chatfunctions.js"></script>
 <script src="script.js"></script>
 <script src="mapsscript.js"></script>
+<script type="text/javascript">
+  oQuickReply.swap('cardtext');
+</script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxuXYlxmbsxvPR1YOyCuNUPu9cBqj3FGk&callback=initMap" async defer></script>  
 <script>
     
@@ -147,9 +150,10 @@
     </template>      
       <template id="play.html">
         <ons-page id="playcard">
-            <div class="playcard" id="playcard" onclick="getcard()" onload="read()">
+            <div class="playcard" id="playcard" onclick="getcard()" onload="getcard()">
                 <h1>Aaaaaargh!</h1>
-                <p class="cardtext" id="cardtext"> </p>
+                <h3>Klicka på kartan för att se nästa kort</h3>
+                <p class="cardtext" id="cardtext" data-placeholder="Insert text here"> </p>
             </div>
             
         </ons-page>

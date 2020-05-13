@@ -19,6 +19,11 @@
     
 }
 
+/*placeholder för kort*/
+p:empty:not(:focus)::before {
+  content: attr(data-placeholder);
+}
+
 #map {
     background-color: black;
     color: beige;
@@ -37,7 +42,9 @@
   height: 100%;
 }
 
-
+h3 {
+  font-style: italic;
+}
 
 
 #playcard {
