@@ -49,7 +49,6 @@ function placeMarker(location, textto, user="You", type="me", timestamp="Now"){
       '<div id="bodyContent">'+
       '<p><b>'+user+' berättar:</b> '+textto+
       '<br> <b>Position uppdaterad:</b> '+timestamp+'</p>'+
-      
       '</div>'+
       '</div>';
       var infowindow = new google.maps.InfoWindow({

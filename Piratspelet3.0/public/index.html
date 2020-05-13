@@ -105,14 +105,12 @@
     
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
-        const pirateName1 = ["Blå", "Röd", "Stor", "Rynk", "Lill"];
-        const pirateName2 = ["Tand", "Tå", "Fot", "Hår", "Öga"];
+        
 
         var max = 100;
         var min = 500;
 
-        var pirateName = "Kapten " + pirateName1[Math.floor(Math.random() * pirateName1.length)] + "-" + pirateName2[Math.floor(Math.random() * pirateName2.length)] + Math.floor(Math.random() * (max) + min); 
-    console.log("Random  Generated : " + pirateName);
+        
         
       </script>
 </head>
@@ -270,28 +268,40 @@
   
     <script>
       function sendMessage() {
+        var user = firebase.auth().currentUser;
+        if(user !== null){
         // get message
         var message = document.getElementById("message").value;
   
         // save in database
         firebase.database().ref("messages").push().set({
-          "sender": pirateName,
+          "sender": user.displayName,
           "message": message
         });
   
         // prevent form from submitting
         return false;
       }
+      else{
+        alert("Du måste vara inloggad för att kunna skicka meddelanden!");
+        return false;
+      }
+      }
     </script>
   
     <script>
+      
       // listen for incoming messages
       firebase.database().ref("messages").on("child_added", function (snapshot) {
         var html = "";
         // give each message a unique ID
+        let user = firebase.auth().currentUser;
+      if(user === null){
+        user = "blaj";
+      };
         html += "<li id='message-" + snapshot.key + "'>";
         // show delete button if message is sent by me
-        if (snapshot.val().sender == pirateName) {
+        if (snapshot.val().sender == user.displayName) {
           html += "<button data-id='" + snapshot.key + "' onclick='deleteMessage(this);'>";
           html += "Ta bort";
           html += "</button>";
