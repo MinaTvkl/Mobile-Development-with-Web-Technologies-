@@ -1,39 +1,64 @@
-
-// Get a reference to the database service
 var database = firebase.database();
-var collectionid = 'vxONoHUCkFSBVEevmt34'
 
-function addCardData(cardID, introduction, action) {
-    firebase.database().ref('cards/' + collectionid).set({
-        cardID = cardID,
-        introduction: introduction,
-        action: action
+var postElement = document.getElementById("playcard") 
+
+
+function getcard() { 
+    var starCountRef = firebase.database().ref('cards/');
+    starCountRef.on('value', function(snapshot) {
+        var list = []
+        console.log(snapshot.val().length)
+        var number = Math.floor(Math.random()*(snapshot.val().length));
+        console.log(number);
+        var insertcard = snapshot.val()[number];
+        var data = snapshot.val()
+        document.getElementById("cardtext").innerHTML = insertcard;
+        return data.action;
+                
+  });
+}
+
+
+  
+  function print() {
+    console.log(starCountRef)
+    console.log(starCountRef.path.pieces_)
+  }
+  
+print()
+
+
+function writeUserData(cardtext, id) {
+    firebase.database().ref('cards/' + id + "/" + cardtext).set({
+    cardtext: cardtext,
     });
   }
 
 
-var piratecard = document.getElementById("cardtext");
+  writeUserData("En skeppsbruten pirat ligger och guppar i det stora blå och först efter ni fiskat upp denne så inser ni att ni fallit offer för den patetiska poeten. Poeten ligger på däck och mumlar ut sin kommersiella smörja ”Uti havet det blå är vi alla små och då kan närmsta tå förstå en skogsrå Efter många om och men så utmanar han besättningen på rimtävling på valfritt ord som du bestämmer. Första personen som misslyckas eller tvekar en ansenlig stund får ta sig en djup titt i bägaren och dricka tre klunkar.")
 
-
-var starCountRef = firebase.database().ref('cards/' + collectionid + '/action');
-starCountRef.on('value', function(snapshot) {
-    updateStarCount(piratecard, snapshot.val());
-});
-
-function print() {
-console.log(starCountRef)
-}
-
-print()
-
-
- //Read data once
-
-return firebase.database().ref('/cards/' + collectionid).once('value').then(function(snapshot) {
-  var card = (snapshot.val() && snapshot.val()) || 'Anonymous';
-  console.log(card)
-  return card;
-});
+  writeUserData("hej", "h")
 
 
 
+  function writeNewPost(uid, username, picture, title, body) {
+    // A post entry.
+    var postData = {
+      author: username,
+      uid: uid,
+      body: body,
+      title: title,
+      starCount: 0,
+      authorPic: picture
+    };
+  
+    // Get a key for a new Post.
+    var newPostKey = firebase.database().ref().child('posts').push().key;
+  
+    // Write the new post's data simultaneously in the posts list and the user's post list.
+    var updates = {};
+    updates['/posts/' + newPostKey] = postData;
+    updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+  
+    return firebase.database().ref().update(updates);
+  }
