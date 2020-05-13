@@ -89,6 +89,25 @@
     };
         
     </script>
+      <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          "projectId": "piratspelet-6afa4",
+          "appId": "1:826621460800:web:5f6ae243fd28c504dfbaa5",
+          "databaseURL": "https://piratspelet-6afa4.firebaseio.com",
+          "storageBucket": "piratspelet-6afa4.appspot.com",
+          "locationId": "europe-west",
+          "apiKey": "AIzaSyA84Ze_Y2Yy0aoKI835N9Ss_8IthGt-53c",
+          "authDomain": "piratspelet-6afa4.firebaseapp.com",
+          "messagingSenderId": "826621460800",
+          "measurementId": "G-CHDR97KN64"
+        };
+    
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    
+        var myName = "Admin" + String();
+      </script>
 </head>
 <body onload="loadThemap()">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -138,6 +157,8 @@
           <ons-tab page="maps.html" label="Map" icon="md-settings" active-icon="md-face" id="map">
           </ons-tab>
         <ons-tab page="page5.html" label="Settings" icon="md-settings" active-icon="md-face" id="settings">
+        </ons-tab>
+        <ons-tab page="chatt.html" label="Flaskpost" icon="md-settings" active-icon="md-face" id="chatt">
         </ons-tab>
         </ons-tabbar>
       </ons-page>
@@ -243,6 +264,88 @@
             <ons-list>
         </ons-page>
     </template>
+    <template id="chatt.html">
+      <ons-page id="chatt">
+        <ons-toolbar>
+          <div class="left">
+            <ons-toolbar-button onclick="fn.open()">
+              <ons-icon icon="md-menu"></ons-icon>
+            </ons-toolbar-button>
+          </div>
+          <div class="center">Message in a bottle</div>
+        </ons-toolbar>
+        <div class="my-content">
+          <!-- create a form to send message -->
+          <form onsubmit="return sendMessage();">
+            <input id="message" placeholder="Enter message" autocomplete="on">
+  
+            <input type="submit">
+          </form>
+          <!-- create a list -->
+          <ul id="messages"></ul>
+        </div>
+        <ons-list>
+      </ons-page>
+    </template>
+  
+  
+  
+    <script>
+      function sendMessage() {
+        // get message
+        var message = document.getElementById("message").value;
+  
+        // save in database
+        firebase.database().ref("messages").push().set({
+          "sender": myName,
+          "message": message
+        });
+  
+        // prevent form from submitting
+        return false;
+      }
+    </script>
+  
+    <script>
+      // listen for incoming messages
+      firebase.database().ref("messages").on("child_added", function (snapshot) {
+        var html = "";
+        // give each message a unique ID
+        html += "<li id='message-" + snapshot.key + "'>";
+        // show delete button if message is sent by me
+        if (snapshot.val().sender == myName) {
+          html += "<button data-id='" + snapshot.key + "' onclick='deleteMessage(this);'>";
+          html += "Delete";
+          html += "</button>";
+        }
+        html += snapshot.val().sender + ": " + snapshot.val().message;
+        html += "</li>";
+  
+        document.getElementById("messages").innerHTML += html;
+      });
+  
+  
+      // attach listener for delete message
+      firebase.database().ref("messages").on("child_removed", function (snapshot) {
+        // remove message node
+        document.getElementById("message-" + snapshot.key).innerHTML = "This message has been removed";
+      });
+  
+      function deleteMessage(self) {
+        // get message ID
+        var messageId = self.getAttribute("data-id");
+  
+        // delete message
+        firebase.database().ref("messages").child(messageId).remove();
+      }
+  
+      // attach listener for delete message
+      firebase.database().ref("messages").on("child_removed", function (snapshot) {
+        // remove message node
+        document.getElementById("message-" + snapshot.key).innerHTML = "This message has been removed";
+      });
+    </script>
+  
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
