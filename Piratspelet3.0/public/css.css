@@ -267,12 +267,13 @@ h1 {
       position: relative;
       margin: 10px 0;
       line-height: 30px;
-      background-color: white;
+      background-color: rgba(255, 255, 255, 0.445);
       font-size: 18px;
       padding: 20px;
+      border-radius: 8px;
     }
     ul li:hover {
-    background-color: moccasin;
+    background-color: rgba(255, 228, 181, 0.589);
     }
 
     #messages{
