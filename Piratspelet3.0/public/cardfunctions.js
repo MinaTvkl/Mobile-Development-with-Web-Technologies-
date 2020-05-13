@@ -12,7 +12,7 @@ function addCardData(cardID, introduction, action) {
   }
 
 
-var piratecard = document.getElementById("cardtext");
+var piratecard = document.getElementById("playcard");
 
 
 var starCountRef = firebase.database().ref('cards/' + collectionid + '/action');
