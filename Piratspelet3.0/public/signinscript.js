@@ -2,7 +2,7 @@
 
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
-if (firebase.auth().currentUser !== null){
+if (firebase.auth().currentUser === null){
     var uiConfig = {
     callbacks: {
       signInSuccessWithAuthResult: function(authResult, redirectUrl) {
