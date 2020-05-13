@@ -1,4 +1,4 @@
-Firebase.initializeApp(firebaseConfig);
+
 
 var database = firebase.database();
 
