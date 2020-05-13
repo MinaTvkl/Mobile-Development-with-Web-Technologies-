@@ -1,20 +1,40 @@
 /* FIRST THREE STYLES SLIDE MENU*/
 
+#sign-in {
+  background-color: black;
+  color: beige;
+  height: 100%;
+}
+
+#map {
+  background-color: black;
+  color: beige;
+  height: 100%;
+}
+
 #play {
-    background-color: lightblue;
-    background-image: url("./photos/piratecard.jpg");
+    background-color: black;
     height: 100%;
+    color: beige;
     
 }
 
 #map {
-    background-color: limegreen;
+    background-color: black;
+    color: beige;
     height: 100%;
 }
 
 #settings {
-    background-color: lightcoral;
+    background-color: black;
+    color: beige;
     height: 100%;
+}
+
+#chat{
+  background-color: black;
+  color: beige;
+  height: 100%;
 }
 
 
@@ -221,4 +241,8 @@ h1 {
     .mapdivider{
     position: relative;
     display: block;
+    }
+
+    .tabbar__icon{
+      color: moccasin;
     }
