@@ -34,6 +34,12 @@
     font-weight: 300;
     }
 
+
+#settingscontent {
+    background-image: url("./photos/piratecard.jpg");
+
+}
+
 li{
     font-size: 30px;
 }
