@@ -1,8 +1,8 @@
 // Initialize the FirebaseUI Widget using Firebase.
 
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
-
-if (firebase.auth().currentUser !== null){
+console.log(firebase.auth().currentUser);
+if (firebase.auth().currentUser === null){
     var uiConfig = {
     callbacks: {
       signInSuccessWithAuthResult: function(authResult, redirectUrl) {
