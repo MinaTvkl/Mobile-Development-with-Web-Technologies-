@@ -146,11 +146,7 @@
         <ons-page id="sign-in">
           <ons-toolbar>
             <div class="left">
-                <ons-toolbar-button onclick="fn.open()">
-                  <ons-icon icon="md-menu"></ons-icon>
-                </ons-toolbar-button>
             </div>
-            <div class="center" >Sign in</div>
         </ons-toolbar >
 
         <div classname="signInDivider">
@@ -231,13 +227,13 @@
                 <div class="center">Settings</div>
             </ons-toolbar>
             <div class="my-content">
-                <h1>Förverkliga dina egna regler</h1>
+                <h1>Skepp ohoj, lägg till ett kort</h1>
                 <form>
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
+                    <label for="exampleInputEmail1">Fyll i ditt kort här</label>
                     <textarea class="form-control" id="cardinput" rows="3"></textarea>
                   </div>
-                  <button type="submit" class="btn btn-primary0" onclick="newcard()">Submit</button>
+                  <button type="reset" class="btn btn-success" onclick="writeNewPost()">Lägg till kort</button>
                 </form>
             </div>
             <ons-list>
@@ -270,6 +266,22 @@
 
     </script>
 
+<script>
+
+
+function writeUserData() {
+  var starCountRef = firebase.database().ref('cards/');
+    starCountRef.on('value', function(snapshot) {
+      var length = snapshot.val().length
+      console.log(length)
+      firebase.database().ref('cards/').set({
+      length: "hej"
+    });
+  });
+}
+
+
+</script>
     
 </body>
   
