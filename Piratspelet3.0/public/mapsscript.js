@@ -38,7 +38,7 @@ var elem = document.getElementById("myDiv")
 //kan användas för att ta sig ur en fullscreen
 
 
-function placeMarker(location, textto, user="you", type="me", timestamp="Now"){
+function placeMarker(location, textto, user="You", type="me", timestamp="Now"){
   let dot = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
   if(type === "other"){
     dot =  "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
@@ -54,9 +54,9 @@ function placeMarker(location, textto, user="you", type="me", timestamp="Now"){
     map: map,
     title: user ,
     label: {
-      text: user + " Say: " + textto + " And was here at: "+ timestamp,
+      text: user + " - Say: " + textto + " - And was here at: "+ timestamp,
       
-      fontWeight: "bold",
+      
       fontSize: "16px"
     }
   });
@@ -88,9 +88,10 @@ function getOthersLocations(){
   
 }
 
-var database = firebase.database();
+
 
 function getOthersPlaylistsfromdatabase(limit = 5, currentUserUid) {
+  let database = firebase.database();
   let locations = [];
   return database.ref("locations")
     .limitToLast(limit)
@@ -125,7 +126,7 @@ function showPosition(position, text, name, email, uid){
   
   position = { lat: position.coords.latitude, lng: position.coords.longitude };
   console.log(position);
-  placeMarker(position , "You");
+  placeMarker(position , text);
   console.log(position);
   let timestamp = new Date().toLocaleString();
   var locationstr = JSON.stringify(position);
@@ -146,7 +147,11 @@ function getLocation(text, name, email, uid){
 }
 
 
-function postMyLocation(text ="no text"){
+function postMyLocation(){
+  
+  var text = "test";
+  text = document.getElementById("messageForLocation").value;
+  console.log(text);
   var user = firebase.auth().currentUser;
   var name, email, photoUrl, uid, emailVerified;
 
@@ -158,13 +163,17 @@ if (user != null) {
   uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
                    // this value to authenticate with your backend server, i                 // you have one. Use User.getToken() instead.
   getLocation(text, name, email, uid);
+  return false;
 }else {
   alert("You need to log in if you want to share your location");
+  return false;
 }
+
 }
 
 
 function addYourLocationToDatabase(location, text, user, name, uid, timestamp) {
+  let database = firebase.database();
   database.ref("locations/"+ uid).set({
     Location: location,
     Text: text,
