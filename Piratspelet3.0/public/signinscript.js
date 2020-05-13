@@ -1,7 +1,7 @@
 // Initialize the FirebaseUI Widget using Firebase.
 
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
-
+console.log(firebase.auth().currentUser);
 if (firebase.auth().currentUser === null){
     var uiConfig = {
     callbacks: {
