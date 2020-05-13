@@ -10,7 +10,7 @@ function initMap() {
   map.setTilt(45);
 var zoomInButton = document.getElementById('zoomInButton');
 var zoomOutButton = document.getElementById('zoomOutButton');
-var currentlocation = document.getElementById("currentLocation");
+
 
 
 google.maps.event.addDomListener(zoomInButton, 'click', function() {
@@ -23,9 +23,7 @@ google.maps.event.addDomListener(zoomOutButton, 'click', function() {
   map.setZoom(map.getZoom() - 1);
 });
 
-google.maps.event.addDomListener(currentlocation, 'click', function() {
-  getLocation();
-  });  
+ 
 
 }
 
@@ -38,12 +36,25 @@ var elem = document.getElementById("myDiv")
 //kan användas för att ta sig ur en fullscreen
 
 
-function placeMarker(location, textto, user="you", type="me", timestamp="Now"){
+function placeMarker(location, textto, user="You", type="me", timestamp="Now"){
   let dot = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
   if(type === "other"){
     dot =  "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
   }
 
+  var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1 id="firstHeading" class="firstHeading">'+user+'</h1>'+
+      '<div id="bodyContent">'+
+      '<p><b>'+user+' berättar:</b> '+textto+
+      '<br> <b>Position uppdaterad:</b> '+timestamp+'</p>'+
+      
+      '</div>'+
+      '</div>';
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
   
   let marker = new google.maps.Marker({
     animation: google.maps.Animation.DROP,
@@ -54,14 +65,12 @@ function placeMarker(location, textto, user="you", type="me", timestamp="Now"){
     map: map,
     title: user ,
     label: {
-      text: user + " Say: " + textto + " And was here at: "+ timestamp,
-      
-      fontWeight: "bold",
-      fontSize: "16px"
+      text: user,
+      fontSize: "12px"
     }
   });
   marker.addListener('click', function() {
-    
+    infowindow.open(map, marker);
     map.setCenter(marker.getPosition());
   });
 
@@ -71,8 +80,7 @@ function placeMarker(location, textto, user="you", type="me", timestamp="Now"){
 function getOthersLocations(){
   var user = firebase.auth().currentUser;
   if(user !== null){
-    getOthersPlaylistsfromdatabase(limit = 5, user.uid).then((othersLocation)=>{
-      console.log(othersLocation);
+    getOthersPlaylistsfromdatabase(limit = 100, user.uid).then((othersLocation)=>{
       othersLocation.forEach((person) =>{
       placeMarker(person.Location , person.Text, person.Name, "other", person.Timestamp);
   
@@ -88,9 +96,10 @@ function getOthersLocations(){
   
 }
 
-var database = firebase.database();
+
 
 function getOthersPlaylistsfromdatabase(limit = 5, currentUserUid) {
+  let database = firebase.database();
   let locations = [];
   return database.ref("locations")
     .limitToLast(limit)
@@ -124,12 +133,10 @@ function getOthersPlaylistsfromdatabase(limit = 5, currentUserUid) {
 function showPosition(position, text, name, email, uid){
   
   position = { lat: position.coords.latitude, lng: position.coords.longitude };
-  console.log(position);
-  placeMarker(position , "You");
-  console.log(position);
   let timestamp = new Date().toLocaleString();
   var locationstr = JSON.stringify(position);
-  console.log(position);
+  placeMarker(position , text, "Du", "me", timestamp);
+  
   addYourLocationToDatabase(locationstr, text, name, email, uid, timestamp);
   
 }
@@ -146,7 +153,10 @@ function getLocation(text, name, email, uid){
 }
 
 
-function postMyLocation(text ="no text"){
+function postMyLocation(){
+  
+  var text = "test";
+  text = document.getElementById("messageForLocation").value;
   var user = firebase.auth().currentUser;
   var name, email, photoUrl, uid, emailVerified;
 
@@ -158,13 +168,17 @@ if (user != null) {
   uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
                    // this value to authenticate with your backend server, i                 // you have one. Use User.getToken() instead.
   getLocation(text, name, email, uid);
+  return false;
 }else {
   alert("You need to log in if you want to share your location");
+  return false;
 }
+
 }
 
 
 function addYourLocationToDatabase(location, text, user, name, uid, timestamp) {
+  let database = firebase.database();
   database.ref("locations/"+ uid).set({
     Location: location,
     Text: text,

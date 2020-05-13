@@ -1,20 +1,40 @@
 /* FIRST THREE STYLES SLIDE MENU*/
 
+#sign-in {
+  background-color: black;
+  color: beige;
+  height: 100%;
+}
+
+#map {
+  background-color: black;
+  color: beige;
+  height: 100%;
+}
+
 #play {
-    background-color: lightblue;
-    background-image: url("./photos/piratecard.jpg");
+    background-color: black;
     height: 100%;
+    color: beige;
     
 }
 
 #map {
-    background-color: limegreen;
+    background-color: black;
+    color: beige;
     height: 100%;
 }
 
 #settings {
-    background-color: lightcoral;
+    background-color: black;
+    color: beige;
     height: 100%;
+}
+
+#chat{
+  background-color: black;
+  color: beige;
+  height: 100%;
 }
 
 
@@ -67,7 +87,7 @@ h1 {
 }
 #controlWrapper{
     position: absolute;
-    bottom:0px;
+    
     margin: 5px;
   }
   
@@ -80,39 +100,55 @@ h1 {
     width: 100%;
   }
 
-  .locationbuttons .locationbutton{
+  .locationbuttons {
+    
+    position: absolute;
+    top:10px;
+    left:20px;
+    
+    
+  }
+
+  .locationbutton{
+    padding-left: 10px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
     background-color: white; /* Green */
     border: 1px solid black;
     color: black;
     padding: 15px 32px;
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    padding-left: 10px;
-    
-    
+    padding-bottom: 10px;
+
   }
-  .locationbuttons .locationbutton:hover{
+   .locationbutton:hover{
     background-color: gray;
   }
   
-  .zoombuttons .zoombutton{
+  .zoombuttons{
+    position: absolute;
+    bottom: 10px;
+    left:50%;
+  }
+   .zoombutton{
+    padding-left: 10px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
     background-color: white; /* Green */
     border: 1px solid black;
     color: black;
     padding: 15px 32px;
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
+    padding-bottom: 10px;
     
     
   }
   
-  .zoombuttons .zoombutton:hover {
+   .zoombutton:hover {
     background-color: gray;
   }
   
@@ -205,4 +241,8 @@ h1 {
     .mapdivider{
     position: relative;
     display: block;
+    }
+
+    .tabbar__icon{
+      color: moccasin;
     }
