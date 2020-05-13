@@ -24,6 +24,7 @@
   
   // listen for incoming messages
   firebase.database().ref("messages").on("child_added", function (snapshot) {
+      console.log(snapshot);
     var html = "";
     // give each message a unique ID
     let user = firebase.auth().currentUser;
@@ -34,13 +35,15 @@
     // show delete button if message is sent by me
     if (snapshot.val().sender == user.displayName) {
       html += "<button data-id='" + snapshot.key + "' onclick='deleteMessage(this);'>";
-      html += "Ta bort";
+      html += "X";
       html += "</button>";
     }
     html += snapshot.val().sender + ": " + snapshot.val().message;
     html += "</li>";
+    
+    document.getElementById('messages').innerHTML = html + document.getElementById('messages').innerHTML;
 
-    document.getElementById("messages").innerHTML += html;
+    
   });
 
 

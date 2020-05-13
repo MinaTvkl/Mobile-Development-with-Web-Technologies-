@@ -91,9 +91,6 @@ function getOthersLocations(){
     alert("You need to log in if you want to show others location!");
 
   }
-
-  
-  
 }
 
 
@@ -127,7 +124,6 @@ function getOthersPlaylistsfromdatabase(limit = 5, currentUserUid) {
       //locationsfiltered = locations.filter((location) => { (new Date(location.Timestamp).getTime() - new Date("01:00:00")) < (new Date(new Date().toLocaleString()).getTime() - new Date("01:00:00"))})
       locationsfiltered = locations;
       return locationsfiltered});
-
 }
 
 function showPosition(position, text, name, email, uid){
