@@ -246,3 +246,35 @@ h1 {
     .tabbar__icon{
       color: moccasin;
     }
+
+
+    /* chat css */
+    .chat-content{
+      background-image: url(./photos/sea.jpg);
+      background-size: cover;
+    }
+
+
+
+    ul{
+      color: black;
+      font-size: 10em;
+      padding: 1rem;
+
+    }
+    ul li {
+      list-style-type: none;
+      position: relative;
+      margin: 10px 0;
+      line-height: 30px;
+      background-color: white;
+      font-size: 18px;
+      padding: 20px;
+    }
+    ul li:hover {
+    background-color: moccasin;
+    }
+
+    #messages{
+      margin: 0;
+    }
