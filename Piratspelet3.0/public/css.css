@@ -67,7 +67,8 @@ h1 {
 }
 #controlWrapper{
     position: absolute;
-    bottom:0px;
+    height: 100%;
+    width: 100%;
     margin: 5px;
   }
   
@@ -90,9 +91,32 @@ h1 {
   }
 
   .locationbutton{
-    padding-left: 10px;
+    
     text-decoration: none;
     display: block;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: white; /* Green */
+    border: 1px solid black;
+    color: black;
+    
+    text-align: center;
+    margin-top: 10px;
+
+  }
+   .locationbutton:hover{
+    background-color: gray;
+  }
+  
+  .zoombuttons{
+    position: absolute;
+    bottom: 10px;
+    left:50%;
+  }
+   .zoombutton{
+    padding-left: 10px;
+    text-decoration: none;
+    display: inline-block;
     font-size: 16px;
     cursor: pointer;
     background-color: white; /* Green */
@@ -101,27 +125,11 @@ h1 {
     padding: 15px 32px;
     text-align: center;
     padding-bottom: 10px;
-
-  }
-   .locationbutton:hover{
-    background-color: gray;
-  }
-  
-  .zoombuttons .zoombutton{
-    background-color: white; /* Green */
-    border: 1px solid black;
-    color: black;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
     
     
   }
   
-  .zoombuttons .zoombutton:hover {
+   .zoombutton:hover {
     background-color: gray;
   }
   
