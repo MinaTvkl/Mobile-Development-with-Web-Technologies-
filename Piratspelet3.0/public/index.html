@@ -101,7 +101,7 @@
         <div class="center">
           PIRATSPELET </div>
         <div class="right">
-            <ons-toolbar-button icon="ion-navicon" onclick="showTemplateDialog()">Sign out</ons-toolbar-button>
+            <ons-toolbar-button icon="ion-navicon" onclick="firebase.auth().signOut()">Sign out</ons-toolbar-button>
           </div>
     </ons-toolbar>
 
@@ -201,13 +201,13 @@
                 <div class="center">Settings</div>
             </ons-toolbar>
             <div class="my-content">
-                <h1>Aaaaaaaaarg mer piratkort behövs!</h1>
+                <h1>Förverkliga dina egna regler</h1>
                 <form>
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Vill du lägga till kort? Fyll i texten här</label>
+                    <label for="exampleInputEmail1">Email address</label>
                     <textarea class="form-control" id="cardinput" rows="3"></textarea>
                   </div>
-                  <button type="button" class="btn btn-primary" onclick="newcard()">Submit</button>
+                  <button type="submit" class="btn btn-primary0" onclick="newcard()">Submit</button>
                 </form>
             </div>
             <ons-list>

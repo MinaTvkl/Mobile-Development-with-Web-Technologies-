@@ -1,9 +1,8 @@
-Firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
 
 function newcard() {
     var text = inputtext = document.getElementById("cardinput").innerHTML
-    console.log(text)
     
     var postData = {
       text = text       
