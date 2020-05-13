@@ -4,6 +4,7 @@
     background-color: lightblue;
     background-image: url("./photos/piratecard.jpg");
     height: 100%;
+    
 }
 
 #map {
@@ -21,11 +22,15 @@
 
 #playcard {
     text-align: center;
-    background-color: lightblue;
+    background-color: black;
     background-image: url("./photos/piratecard.jpg");
     background-size: cover;
     height: 100%;
-    font-size: 19px;
+    border-radius: 18px;
+    border: 5px solid;
+    height: 97%;
+    top: 40px;
+
 }
 
 
@@ -51,7 +56,6 @@ h1 {
 }
 
 .cardtext {
-    font-style: bold;
     font-weight: bold;
     margin-left: 10%;
     width: 80%;
