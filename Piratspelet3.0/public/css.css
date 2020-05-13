@@ -67,8 +67,7 @@ h1 {
 }
 #controlWrapper{
     position: absolute;
-    height: 100%;
-    width: 100%;
+    
     margin: 5px;
   }
   
@@ -91,17 +90,17 @@ h1 {
   }
 
   .locationbutton{
-    
+    padding-left: 10px;
     text-decoration: none;
-    display: block;
+    display: inline-block;
     font-size: 16px;
     cursor: pointer;
     background-color: white; /* Green */
     border: 1px solid black;
     color: black;
-    
+    padding: 15px 32px;
     text-align: center;
-    margin-top: 10px;
+    padding-bottom: 10px;
 
   }
    .locationbutton:hover{
