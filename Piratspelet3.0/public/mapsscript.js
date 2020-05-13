@@ -42,6 +42,19 @@ function placeMarker(location, textto, user="You", type="me", timestamp="Now"){
     dot =  "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
   }
 
+  var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1 id="firstHeading" class="firstHeading">'+user+'</h1>'+
+      '<div id="bodyContent">'+
+      '<p><b>'+user+' berättar:</b> '+textto+
+      '<br> <b>Position uppdaterad:</b> '+timestamp+'</p>'+
+      
+      '</div>'+
+      '</div>';
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
   
   let marker = new google.maps.Marker({
     animation: google.maps.Animation.DROP,
@@ -52,14 +65,12 @@ function placeMarker(location, textto, user="You", type="me", timestamp="Now"){
     map: map,
     title: user ,
     label: {
-      text: user + " - Berättar: " + textto + " - Och satt på denna position: "+ timestamp,
-      
-      
-      fontSize: "16px"
+      text: user,
+      fontSize: "12px"
     }
   });
   marker.addListener('click', function() {
-    
+    infowindow.open(map, marker);
     map.setCenter(marker.getPosition());
   });
 
