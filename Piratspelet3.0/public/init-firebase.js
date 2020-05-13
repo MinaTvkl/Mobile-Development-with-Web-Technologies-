@@ -18,7 +18,7 @@ firebase.initializeApp(firebaseConfig);
 
 var database = firebase.database();
 
-var postElement = document.getElementById("cardtext") 
+var postElement = document.getElementById("playcard") 
 
 
 function getcard() { 
