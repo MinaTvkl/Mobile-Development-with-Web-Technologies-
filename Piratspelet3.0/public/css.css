@@ -55,7 +55,7 @@
 
 
 #header{
-    background-color: limegreen;
+    background-color: moccasin;
     font-weight: 300;
     }
 
@@ -278,4 +278,14 @@ h1 {
 
     #messages{
       margin: 0;
+    }
+
+    /*toolbar*/
+    ons-toolbar{
+      color: beige;
+    }
+    
+    #chat-form{
+      text-align: center;
+    padding-top: 25px;
     }
