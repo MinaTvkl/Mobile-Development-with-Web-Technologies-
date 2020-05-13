@@ -32,6 +32,7 @@
 <script defer src="signinscript.js"></script>
 <script defer src="./cardfunctions.js"></script>
 <script defer src="./addfunctions.js"></script>
+<script defer src="./chatfunctions.js"></script>
 <script src="script.js"></script>
 <script src="mapsscript.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxuXYlxmbsxvPR1YOyCuNUPu9cBqj3FGk&callback=initMap" async defer></script>  
@@ -90,27 +91,9 @@
         
     </script>
       <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-          "projectId": "piratspelet-6afa4",
-          "appId": "1:826621460800:web:5f6ae243fd28c504dfbaa5",
-          "databaseURL": "https://piratspelet-6afa4.firebaseio.com",
-          "storageBucket": "piratspelet-6afa4.appspot.com",
-          "locationId": "europe-west",
-          "apiKey": "AIzaSyA84Ze_Y2Yy0aoKI835N9Ss_8IthGt-53c",
-          "authDomain": "piratspelet-6afa4.firebaseapp.com",
-          "messagingSenderId": "826621460800",
-          "measurementId": "G-CHDR97KN64"
-        };
-    
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
         
-
         var max = 100;
         var min = 500;
-
-        
         
       </script>
 </head>
@@ -265,73 +248,7 @@
   
   
   
-    <script>
-      function sendMessage() {
-        var user = firebase.auth().currentUser;
-        if(user !== null){
-        // get message
-        var message = document.getElementById("message").value;
-  
-        // save in database
-        firebase.database().ref("messages").push().set({
-          "sender": user.displayName,
-          "message": message
-        });
-  
-        // prevent form from submitting
-        return false;
-      }
-      else{
-        alert("Du måste vara inloggad för att kunna skicka meddelanden!");
-        return false;
-      }
-      }
-    </script>
-  
-    <script>
-      
-      // listen for incoming messages
-      firebase.database().ref("messages").on("child_added", function (snapshot) {
-        var html = "";
-        // give each message a unique ID
-        let user = firebase.auth().currentUser;
-      if(user === null){
-        user = "blaj";
-      };
-        html += "<li id='message-" + snapshot.key + "'>";
-        // show delete button if message is sent by me
-        if (snapshot.val().sender == user.displayName) {
-          html += "<button data-id='" + snapshot.key + "' onclick='deleteMessage(this);'>";
-          html += "Ta bort";
-          html += "</button>";
-        }
-        html += snapshot.val().sender + ": " + snapshot.val().message;
-        html += "</li>";
-  
-        document.getElementById("messages").innerHTML += html;
-      });
-  
-  
-      // attach listener for delete message
-      firebase.database().ref("messages").on("child_removed", function (snapshot) {
-        // remove message node
-        document.getElementById("message-" + snapshot.key).innerHTML = "This message has been removed";
-      });
-  
-      function deleteMessage(self) {
-        // get message ID
-        var messageId = self.getAttribute("data-id");
-  
-        // delete message
-        firebase.database().ref("messages").child(messageId).remove();
-      }
-  
-      // attach listener for delete message
-      firebase.database().ref("messages").on("child_removed", function (snapshot) {
-        // remove message node
-        document.getElementById("message-" + snapshot.key).innerHTML = "Flaskposten sjönk :(";
-      });
-    </script>
+    
   
 
     <script>
