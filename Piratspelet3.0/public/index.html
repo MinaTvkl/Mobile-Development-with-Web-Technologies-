@@ -125,14 +125,12 @@
     <ons-toolbar id="header">
       
         <div class="left">
-            <ons-toolbar-button onclick="fn.open()">
-              <ons-icon icon="md-menu"></ons-icon>
-            </ons-toolbar-button>
+
         </div>
         <div class="center">
           PIRATSPELET </div>
         <div class="right">
-            <ons-toolbar-button icon="ion-navicon" onclick="firebase.auth().signOut()">Sign out</ons-toolbar-button>
+            <ons-toolbar-button icon="ion-navicon" onclick="firebase.auth().signOut()">Logga ut</ons-toolbar-button>
           </div>
     </ons-toolbar>
   
@@ -155,9 +153,6 @@
         <ons-page id="sign-in">
           <ons-toolbar>
             <div class="left">
-                <ons-toolbar-button onclick="fn.open()">
-                  <ons-icon icon="md-menu"></ons-icon>
-                </ons-toolbar-button>
             </div>
             <div class="center" >Sign in</div>
         </ons-toolbar >
@@ -192,9 +187,6 @@
           <ons-toolbar>
             
               <div class="left">
-                  <ons-toolbar-button onclick="fn.open()">
-                    <ons-icon icon="md-menu"></ons-icon>
-                  </ons-toolbar-button>
               </div>
               <div class="center" >MAP</div>
               
@@ -236,9 +228,6 @@
         <ons-page id="page5">
             <ons-toolbar>
                 <div class="left">
-                    <ons-toolbar-button onclick="fn.open()">
-                      <ons-icon icon="md-menu"></ons-icon>
-                    </ons-toolbar-button>
                 </div>
                 <div class="center">Settings</div>
             </ons-toolbar>
@@ -259,9 +248,6 @@
       <ons-page id="chat">
         <ons-toolbar>
           <div class="left">
-            <ons-toolbar-button onclick="fn.open()">
-              <ons-icon icon="md-menu"></ons-icon>
-            </ons-toolbar-button>
           </div>
           <div class="center">Message in a bottle</div>
         </ons-toolbar>
@@ -306,7 +292,7 @@
         // show delete button if message is sent by me
         if (snapshot.val().sender == pirateName) {
           html += "<button data-id='" + snapshot.key + "' onclick='deleteMessage(this);'>";
-          html += "Delete";
+          html += "Ta bort";
           html += "</button>";
         }
         html += snapshot.val().sender + ": " + snapshot.val().message;
@@ -333,7 +319,7 @@
       // attach listener for delete message
       firebase.database().ref("messages").on("child_removed", function (snapshot) {
         // remove message node
-        document.getElementById("message-" + snapshot.key).innerHTML = "This message has been removed";
+        document.getElementById("message-" + snapshot.key).innerHTML = "Flaskposten sjönk :(";
       });
     </script>
   
