@@ -49,7 +49,6 @@ function placeMarker(location, textto, user="You", type="me", timestamp="Now"){
       '<div id="bodyContent">'+
       '<p><b>'+user+' berättar:</b> '+textto+
       '<br> <b>Position uppdaterad:</b> '+timestamp+'</p>'+
-      
       '</div>'+
       '</div>';
       var infowindow = new google.maps.InfoWindow({
@@ -66,6 +65,7 @@ function placeMarker(location, textto, user="You", type="me", timestamp="Now"){
     title: user ,
     label: {
       text: user,
+      fontWeight: "bold",
       fontSize: "12px"
     }
   });
@@ -177,14 +177,14 @@ if (user != null) {
 }
 
 
-function addYourLocationToDatabase(location, text, user, name, uid, timestamp) {
+function addYourLocationToDatabase(location, text, name, email, uid, timestamp) {
   let database = firebase.database();
   database.ref("locations/"+ uid).set({
     Location: location,
     Text: text,
-    User: user,
     Name: name,
     Uid: uid,
+    Email:email,
     Timestamp:timestamp,
   });
 }
