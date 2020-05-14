@@ -14,16 +14,50 @@
   <title>MQTT Demo</title>
 </head>
 <body>
+
+  <h1>Basic Web Cam Demo!</h1>
+  <!-- A button for taking snaps -->
+    <div id="my_camera">
+    </div><br>
+    <input type=button value="Take Snapshot" onClick="onConnect()">
+    <br>
+    <div id="results" ></div>
+
+  <script type="text/javascript" src="js/webcam.min.js"></script>
+  <script language="JavaScript">
+
+
+
+  
+</script>
+
   <script type="text/javascript">
     let count = 0
     function onConnect() {
-      console.log("connection successful")
-      client.subscribe(myTopic)   //subscribe to our topic
-      publish(myTopic, "Joakim says - this is the init message!")
-    }
+      
+        // take snapshot and get image data
+        setInterval(()=>{
+        Webcam.snap (function(data_uri) {
+            // display results in page            
+        publish(myTopic, data_uri)
+      },5000)   // publish count every 5s
+      publish(myTopic, "Survellience started")
     
-    const publish = (topic, msg) => {  //takes topic and message string
-      let message = new Paho.MQTT.Message(msg);
+       
+        });
+    }
+    Webcam.set({
+        width: 320,
+        height: 240,
+        image_format: 'jpeg',
+        jpeg_quality: 90
+    });
+    Webcam.attach( '#my_camera' );
+  
+    
+    const publish = (topic, img) => {  //takes topic and message string
+      let message = new Paho.MQTT.Message(img);
+      console.log(message.destinationName)
       message.destinationName = topic;
       client.send(message);
     }
@@ -39,15 +73,17 @@
       console.log("Got message on topic " + message.destinationName + " with payload: " + message.payloadString);
       let el= document.createElement('div')
       el.innerHTML = message.payloadString
-      document.body.appendChild(el)
+      document.getElementById('results').innerHTML = 
+                '<h2>Here is your image:</h2>' + 
+                '<img src="'+message.payloadString+'"/>';
     }
   
 //    const client = new Paho.MQTT.Client("ws://mqtt.eclipse.org/mqtt", "myJSClientId" + new Date().getTime());
     const client = new Paho.MQTT.Client("ws://test.mosquitto.org:8080/mqtt", "kth/dm2518/pose/discordlovers/imgb64");
-    const myTopic = "testTopic";
+    const myTopic = "image";
+    const reply = 'kth/dm2518/reply/yolo3/discordlovers/imgb64'
     client.onMessageArrived = onMessageArrived;
     client.onConnectionLost = onConnectionLost;
-    client.connect({ onSuccess: onConnect });
   </script>
 
   <h1>MQTT is awesome!!!</h1>
