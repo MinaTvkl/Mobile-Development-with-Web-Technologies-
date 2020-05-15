@@ -22,6 +22,7 @@
     <input type=button value="Start surveillance" onClick="onConnect()">
     <br>
     <div id="results" ></div>
+    <div id="results_text" ></div>
 
   <script type="text/javascript" src="js/webcam.min.js"></script>
   <script language="JavaScript">
@@ -34,9 +35,9 @@
   <script type="text/javascript">
     let count = 0
     function onConnect() {
-      debugger;
       console.log("connection successful");
       client.subscribe(reply)
+      client.subscribe(textreply)
         // take snapshot and get image data
       setInterval(()=>{
         Webcam.snap (function(data_uri) {
@@ -65,6 +66,7 @@
       client.send(message);
     }
 
+
     function onConnectionLost(responseObject) {
       if (responseObject.errorCode !== 0) {
         console.log("onConnectionLost:" + responseObject.errorMessage);
@@ -74,12 +76,22 @@
 
     function onMessageArrived(message) {
       console.log("Got message on topic " + message.destinationName + " with payload: " + message.payloadString);
+
+      if (message.destinationName === myJSONTopic) {
+        document.getElementById('results_text').innerHTML =
+          '<h2>Text reply</h2>' +
+          '<p>' + message.payloadString + '</p>';
+        burgular(message.payloadString);
+      }
+
+      else{ 
       let el= document.createElement('div')
       el.innerHTML = message.payloadString
       document.getElementById('results').innerHTML = 
                 '<h2>Image is processes</h2>' + 
                 '<img src="'+message.payloadString+'"/>';
-    }
+              }
+        }
   
 //    const client = new Paho.MQTT.Client("ws://mqtt.eclipse.org/mqtt", "myJSClientId" + new Date().getTime());
     const client = new Paho.MQTT.Client("ws://test.mosquitto.org:8080/mqtt", "kth/dm2518/pose/discordlovers/imgb64");
@@ -94,6 +106,18 @@
   <h1>MQTT is awesome!!!</h1>
   <div id="results" ></div>
 
+  <script type="text/javascript">
+    function speak(text) {
+        speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+    }
+
+    function burgular(str) {
+      let person = str.indexOf('person');
+      if (person != -1) {
+        speak('WARNING! Police are coming.');
+      }
+    }
+    </script>
 </body>
 </html>
 
