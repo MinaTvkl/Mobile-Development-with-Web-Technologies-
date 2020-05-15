@@ -77,7 +77,7 @@
     function onMessageArrived(message) {
       console.log("Got message on topic " + message.destinationName + " with payload: " + message.payloadString);
 
-      if (message.destinationName === myJSONTopic) {
+      if (message.destinationName === textreply) {
         document.getElementById('results_text').innerHTML =
           '<h2>Text reply</h2>' +
           '<p>' + message.payloadString + '</p>';
