@@ -34,22 +34,22 @@
   <script type="text/javascript">
     let count = 0
     function onConnect() {
-      
+      debugger;
+      console.log("connection successful");
+      client.subscribe(myTopic)
         // take snapshot and get image data
-        setInterval(()=>{
+      setInterval(()=>{
         Webcam.snap (function(data_uri) {
             // display results in page            
-        publish(myTopic, data_uri)
-      },5000)   // publish count every 5s
-      publish(myTopic, "Survellience started")
-    
-       
-        });
+        publish(myTopic, data_uri);
+      })   // publish count every 5s
+        },5000);
     }
-    Webcam.set({
+
+     Webcam.set({
         width: 320,
         height: 240,
-        image_format: 'jpeg',
+        image_format: 'imgb64',
         jpeg_quality: 90
     });
     Webcam.attach( '#my_camera' );
@@ -80,10 +80,11 @@
   
 //    const client = new Paho.MQTT.Client("ws://mqtt.eclipse.org/mqtt", "myJSClientId" + new Date().getTime());
     const client = new Paho.MQTT.Client("ws://test.mosquitto.org:8080/mqtt", "kth/dm2518/pose/discordlovers/imgb64");
-    const myTopic = "image";
+    const myTopic = "kth/dm2518/yolo3/discordlovers/imgb64";
     const reply = 'kth/dm2518/reply/yolo3/discordlovers/imgb64'
     client.onMessageArrived = onMessageArrived;
     client.onConnectionLost = onConnectionLost;
+    client.connect({ onSuccess: function(){console.log("conncected!")} })
   </script>
 
   <h1>MQTT is awesome!!!</h1>
